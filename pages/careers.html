@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Careers — ieLAN Edge</title>
+<meta name="description" content="Join ieLAN Edge — build the future with a cross-border, purpose-driven technology company.">
+<meta name="theme-color" content="#00b4ff">
+<link rel="manifest" href="../manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+#culture { padding:120px 52px; background:var(--bg2); }
+.culture-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:60px; }
+.culture-card { background:var(--card-bg); border:1px solid var(--border); padding:40px 32px; transition:all 0.4s; backdrop-filter:blur(10px); }
+.culture-card:hover { border-color:rgba(0,180,255,0.3); transform:translateY(-4px); }
+.culture-icon { font-size:40px; margin-bottom:20px; }
+.culture-title { font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--white); margin-bottom:12px; }
+.culture-desc { font-size:14px; color:var(--muted); line-height:1.75; font-weight:300; }
+
+#perks { padding:100px 52px; background:var(--bg); }
+.perks-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:60px; }
+.perk-card { background:var(--card-bg); border:1px solid var(--border); padding:32px 24px; text-align:center; transition:all 0.4s; backdrop-filter:blur(10px); }
+.perk-card:hover { border-color:rgba(245,200,66,0.3); transform:translateY(-4px); }
+.perk-icon { font-size:36px; margin-bottom:14px; }
+.perk-title { font-weight:800; color:var(--white); font-size:15px; margin-bottom:8px; }
+.perk-desc { font-size:12px; color:var(--muted); line-height:1.6; }
+
+#jobs { padding:120px 52px; background:var(--bg2); }
+.jobs-filter { display:flex; gap:8px; flex-wrap:wrap; margin:40px 0 32px; }
+.filter-btn { background:var(--surface); border:1px solid var(--border); color:var(--muted); padding:8px 20px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; cursor:none; transition:all 0.3s; }
+.filter-btn.active, .filter-btn:hover { border-color:var(--blue); color:var(--blue); background:rgba(0,180,255,0.08); }
+.jobs-list { display:flex; flex-direction:column; gap:2px; }
+.job-card { background:var(--card-bg); border:1px solid var(--border); padding:28px 36px; display:grid; grid-template-columns:1fr auto; gap:20px; align-items:center; transition:all 0.3s; backdrop-filter:blur(10px); position:relative; overflow:hidden; }
+.job-card::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(to bottom,var(--blue),var(--gold)); transform:scaleY(0); transition:transform 0.3s; }
+.job-card:hover { border-color:rgba(0,180,255,0.3); background:rgba(0,180,255,0.04); }
+.job-card:hover::before { transform:scaleY(1); }
+.job-info {}
+.job-dept { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--blue); letter-spacing:3px; text-transform:uppercase; margin-bottom:8px; }
+.job-title { font-weight:800; color:var(--white); font-size:18px; margin-bottom:6px; }
+.job-meta { display:flex; gap:12px; flex-wrap:wrap; }
+.job-tag { display:inline-flex; align-items:center; gap:4px; padding:3px 10px; background:var(--surface); border:1px solid var(--border); font-size:11px; color:var(--muted); font-family:'JetBrains Mono',monospace; letter-spacing:1px; }
+.job-tag.remote { color:var(--green); border-color:rgba(0,229,160,0.3); background:rgba(0,229,160,0.08); }
+.job-tag.hybrid { color:var(--gold); border-color:rgba(245,200,66,0.3); background:rgba(245,200,66,0.08); }
+.job-apply { display:flex; flex-direction:column; align-items:flex-end; gap:8px; }
+.btn-apply { background:linear-gradient(135deg,var(--blue),var(--blue2)); color:#fff; border:none; padding:12px 28px; font-family:'Exo 2',sans-serif; font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; cursor:none; transition:all 0.3s; clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); text-decoration:none; }
+.btn-apply:hover { box-shadow:0 0 24px rgba(0,180,255,0.4); }
+.btn-apply.gold { background:linear-gradient(135deg,var(--gold),var(--orange)); color:#000; }
+
+#apply-form { padding:120px 52px; background:var(--bg); }
+.apply-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+.apply-cta { }
+.apply-cta h2 { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,6vw,80px); color:var(--white); line-height:0.95; margin-bottom:24px; }
+.apply-cta h2 span { color:var(--gold); }
+.apply-cta p { font-size:16px; color:var(--muted); line-height:1.8; font-weight:300; margin-bottom:32px; }
+
+@media (max-width:1024px) { .culture-grid { grid-template-columns:1fr 1fr; } .perks-grid { grid-template-columns:1fr 1fr; } }
+@media (max-width:768px) {
+  #culture,#perks,#jobs,#apply-form { padding-left:20px; padding-right:20px; }
+  .culture-grid,.perks-grid { grid-template-columns:1fr; }
+  .job-card { grid-template-columns:1fr; }
+  .job-apply { align-items:flex-start; }
+  .apply-grid { grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+<div id="nav-inject" data-root="../"></div>
+<div style="padding-top:72px"></div>
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="blue">▶ CAREERS</span><span>JOIN THE EDGE</span><span class="gold">BUILD THE FUTURE</span><span>REMOTE FIRST</span><span class="blue">▶ OPEN ROLES</span><span>PURPOSE DRIVEN</span><span class="gold">HIGH GROWTH</span><span>GLOBAL TEAM</span>
+    <span class="blue">▶ CAREERS</span><span>JOIN THE EDGE</span><span class="gold">BUILD THE FUTURE</span><span>REMOTE FIRST</span><span class="blue">▶ OPEN ROLES</span><span>PURPOSE DRIVEN</span><span class="gold">HIGH GROWTH</span><span>GLOBAL TEAM</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content container">
+    <div class="page-breadcrumb"><a href="../index.html">Home</a> › Careers</div>
+    <h1 class="page-hero-title">JOIN THE <span class="accent">EDGE</span></h1>
+    <p class="page-hero-desc">We're looking for bold thinkers, passionate builders, and purpose-driven people who want to be part of something bigger than a job title.</p>
+    <div style="margin-top:36px;display:flex;gap:12px;flex-wrap:wrap">
+      <a href="#jobs" class="btn-primary">View Open Roles</a>
+      <a href="#apply-form" class="btn-secondary">Send Open Application</a>
+    </div>
+  </div>
+</div>
+
+<div class="stats-row">
+  <div class="stat-block"><div class="stat-num" data-count="100" data-suffix="%">100%</div><div class="stat-label">Remote Friendly</div></div>
+  <div class="stat-block"><div class="stat-num gold">2</div><div class="stat-label">HQ Countries</div></div>
+  <div class="stat-block"><div class="stat-num" data-count="5" data-suffix="+">5+</div><div class="stat-label">Countries in Team</div></div>
+  <div class="stat-block"><div class="stat-num gold">∞</div><div class="stat-label">Growth Potential</div></div>
+</div>
+
+<section id="culture">
+  <div class="container">
+    <div class="section-label reveal">Our Culture</div>
+    <h2 class="section-title reveal">LIFE AT <span class="gold">ieLAN EDGE</span></h2>
+    <div class="culture-grid">
+      <div class="culture-card reveal">
+        <div class="culture-icon">🌍</div>
+        <div class="culture-title">Cross-Border by Nature</div>
+        <p class="culture-desc">You'll work with teammates across India and beyond. Different perspectives aren't just tolerated here — they're the source of our edge.</p>
+      </div>
+      <div class="culture-card reveal reveal-delay-1">
+        <div class="culture-icon">⚡</div>
+        <div class="culture-title">Move Fast, Build Right</div>
+        <p class="culture-desc">We operate with startup velocity and enterprise discipline. Ship fast, learn fast, improve fast — but always with quality and purpose as the compass.</p>
+      </div>
+      <div class="culture-card reveal reveal-delay-2">
+        <div class="culture-icon">💛</div>
+        <div class="culture-title">Purpose is Our North Star</div>
+        <p class="culture-desc">Every role, every sprint, every deployment is connected to Amal — real-world impact. You'll know exactly why your work matters.</p>
+      </div>
+      <div class="culture-card reveal">
+        <div class="culture-icon">🚀</div>
+        <div class="culture-title">Ownership Mentality</div>
+        <p class="culture-desc">We hire people who think like founders. You'll have genuine ownership over your work, with the autonomy to make meaningful decisions.</p>
+      </div>
+      <div class="culture-card reveal reveal-delay-1">
+        <div class="culture-icon">📚</div>
+        <div class="culture-title">Never Stop Learning</div>
+        <p class="culture-desc">Continuous growth is core to who we are. Learning budgets, peer knowledge-sharing, and exposure to cutting-edge technology are all part of the deal.</p>
+      </div>
+      <div class="culture-card reveal reveal-delay-2">
+        <div class="culture-icon">🤝</div>
+        <div class="culture-title">Radical Collaboration</div>
+        <p class="culture-desc">No silos, no politics. We operate as one team with shared goals — designers, engineers, and strategists working in genuine partnership.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="perks">
+  <div class="container">
+    <div class="section-label reveal">Benefits & Perks</div>
+    <h2 class="section-title reveal">THE <span class="gold">EDGE</span> PACKAGE</h2>
+    <div class="perks-grid">
+      <div class="perk-card reveal"><div class="perk-icon">🌐</div><div class="perk-title">Remote First</div><p class="perk-desc">Work from anywhere in the world. Async-first culture with optional office time in India and Globe.</p></div>
+      <div class="perk-card reveal reveal-delay-1"><div class="perk-icon">📈</div><div class="perk-title">Competitive Pay</div><p class="perk-desc">Market-competitive compensation with performance-based growth and transparent pay bands.</p></div>
+      <div class="perk-card reveal reveal-delay-2"><div class="perk-icon">🎓</div><div class="perk-title">Learning Budget</div><p class="perk-desc">Annual budget for courses, conferences, certifications, and books. We invest in your growth.</p></div>
+      <div class="perk-card reveal reveal-delay-3"><div class="perk-icon">🏖️</div><div class="perk-title">Flexible Time Off</div><p class="perk-desc">Flexible leave policy — take the time you need to rest, recover, and come back at your best.</p></div>
+      <div class="perk-card reveal"><div class="perk-icon">💻</div><div class="perk-title">Tech Setup</div><p class="perk-desc">Top-tier home office setup allowance. We equip you with the tools to do your best work.</p></div>
+      <div class="perk-card reveal reveal-delay-1"><div class="perk-icon">🌍</div><div class="perk-title">Global Exposure</div><p class="perk-desc">Work across India, and global markets. Occasional team meetups in our HQ cities.</p></div>
+      <div class="perk-card reveal reveal-delay-2"><div class="perk-icon">🚀</div><div class="perk-title">Equity Options</div><p class="perk-desc">Performance-based equity participation for senior and founding-team roles.</p></div>
+      <div class="perk-card reveal reveal-delay-3"><div class="perk-icon">❤️</div><div class="perk-title">Wellbeing Support</div><p class="perk-desc">Mental health days, wellness resources, and a team culture that genuinely cares.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="jobs">
+  <div class="container">
+    <div class="section-label reveal">Open Roles</div>
+    <h2 class="section-title reveal">CURRENT <span class="gold">OPENINGS</span></h2>
+    <div class="jobs-filter">
+      <button class="filter-btn active">All Roles</button>
+      <button class="filter-btn">Engineering</button>
+      <button class="filter-btn">Design</button>
+      <button class="filter-btn">Product</button>
+      <button class="filter-btn">Business</button>
+      <button class="filter-btn">Marketing</button>
+    </div>
+    <div class="jobs-list">
+      <div class="job-card reveal">
+        <div class="job-info">
+          <div class="job-dept">Engineering</div>
+          <div class="job-title">Senior Full Stack Developer</div>
+          <div class="job-meta">
+            <span class="job-tag remote">● Remote</span>
+            <span class="job-tag">Full Time</span>
+            <span class="job-tag">React · Node.js · AWS</span>
+          </div>
+        </div>
+        <div class="job-apply"><a href="#apply-form" class="btn-apply">Apply →</a></div>
+      </div>
+      <div class="job-card reveal">
+        <div class="job-info">
+          <div class="job-dept">AI & Data</div>
+          <div class="job-title">AI / Machine Learning Engineer</div>
+          <div class="job-meta">
+            <span class="job-tag remote">● Remote</span>
+            <span class="job-tag">Full Time</span>
+            <span class="job-tag">Python · PyTorch · LLMs</span>
+          </div>
+        </div>
+        <div class="job-apply"><a href="#apply-form" class="btn-apply">Apply →</a></div>
+      </div>
+      <div class="job-card reveal">
+        <div class="job-info">
+          <div class="job-dept">Design</div>
+          <div class="job-title">Senior Product Designer (UX/UI)</div>
+          <div class="job-meta">
+            <span class="job-tag remote">● Remote</span>
+            <span class="job-tag">Full Time</span>
+            <span class="job-tag">Figma · Design Systems</span>
+          </div>
+        </div>
+        <div class="job-apply"><a href="#apply-form" class="btn-apply">Apply →</a></div>
+      </div>
+      <div class="job-card reveal">
+        <div class="job-info">
+          <div class="job-dept">Business</div>
+          <div class="job-title">Business Development Manager — MENA</div>
+          <div class="job-meta">
+            <span class="job-tag hybrid">◐ Hybrid</span>
+            <span class="job-tag">Full Time</span>
+            <span class="job-tag">Remote</span>
+          </div>
+        </div>
+        <div class="job-apply"><a href="#apply-form" class="btn-apply">Apply →</a></div>
+      </div>
+      <div class="job-card reveal">
+        <div class="job-info">
+          <div class="job-dept">Engineering</div>
+          <div class="job-title">Cloud & DevOps Engineer</div>
+          <div class="job-meta">
+            <span class="job-tag remote">● Remote</span>
+            <span class="job-tag">Full Time</span>
+            <span class="job-tag">AWS · Terraform · K8s</span>
+          </div>
+        </div>
+        <div class="job-apply"><a href="#apply-form" class="btn-apply">Apply →</a></div>
+      </div>
+      <div class="job-card reveal">
+        <div class="job-info">
+          <div class="job-dept">Marketing</div>
+          <div class="job-title">Digital Marketing Lead</div>
+          <div class="job-meta">
+            <span class="job-tag remote">● Remote</span>
+            <span class="job-tag">Full Time</span>
+            <span class="job-tag">Growth · Content · SEO</span>
+          </div>
+        </div>
+        <div class="job-apply"><a href="#apply-form" class="btn-apply">Apply →</a></div>
+      </div>
+      <div class="job-card reveal">
+        <div class="job-info">
+          <div class="job-dept">Open Application</div>
+          <div class="job-title">Don't See Your Role? Apply Anyway.</div>
+          <div class="job-meta">
+            <span class="job-tag remote">● All Locations</span>
+            <span class="job-tag">All Roles</span>
+          </div>
+        </div>
+        <div class="job-apply"><a href="#apply-form" class="btn-apply gold">Send CV →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="apply-form">
+  <div class="container">
+    <div class="apply-grid">
+      <div class="apply-cta">
+        <div class="section-label reveal">Apply Now</div>
+        <h2 reveal class="reveal">BUILD THE<br><span>FUTURE</span><br>WITH US</h2>
+        <p class="reveal">Whether you're applying for a specific role or sending an open application, we read every submission. Tell us who you are and what drives you — not just your CV.</p>
+        <div style="display:flex;flex-direction:column;gap:12px;margin-top:8px">
+          <div class="value-item" style="display:flex;align-items:center;gap:16px;background:var(--card-bg);border:1px solid var(--border);padding:16px 20px;backdrop-filter:blur(10px)">
+            <span style="font-size:20px">📧</span>
+            <div style="font-size:13px;color:var(--muted)"><strong style="color:var(--text);display:block">hello@ieLANedge.com</strong>careers@ieLANedge.com</div>
+          </div>
+          <div class="value-item" style="display:flex;align-items:center;gap:16px;background:var(--card-bg);border:1px solid var(--border);padding:16px 20px;backdrop-filter:blur(10px)">
+            <span style="font-size:20px">💼</span>
+            <div style="font-size:13px;color:var(--muted)"><strong style="color:var(--text);display:block">LinkedIn</strong>linkedin.com/company/ieLANedge</div>
+          </div>
+        </div>
+      </div>
+      <form class="reveal" data-form>
+        <div class="form-row">
+          <div class="form-group"><label>Full Name</label><input type="text" placeholder="Your full name" required></div>
+          <div class="form-group"><label>Email Address</label><input type="email" placeholder="hello@example.com" required></div>
+        </div>
+        <div class="form-group"><label>Role You're Applying For</label>
+          <select required>
+            <option value="">Select a role...</option>
+            <option>Senior Full Stack Developer</option>
+            <option>AI / Machine Learning Engineer</option>
+            <option>Senior Product Designer</option>
+            <option>Business Development Manager</option>
+            <option>Cloud & DevOps Engineer</option>
+            <option>Digital Marketing Lead</option>
+            <option>Open Application</option>
+          </select>
+        </div>
+        <div class="form-group"><label>LinkedIn / Portfolio URL</label><input type="url" placeholder="https://linkedin.com/in/yourprofile"></div>
+        <div class="form-group"><label>Why ieLAN Edge?</label><textarea placeholder="Tell us what excites you about ieLAN Edge and what you'd bring to the team..." required></textarea></div>
+        <button type="submit" class="btn-primary" style="width:100%;justify-content:center;padding:18px">⚡ Submit Application</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div id="footer-inject" data-root="../"></div>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

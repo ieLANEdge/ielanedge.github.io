@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newsroom — ieLAN Edge</title>
+<meta name="theme-color" content="#00b4ff">
+<link rel="manifest" href="../manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+#news { padding:80px 52px 120px; background:var(--bg); }
+.news-filter { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:48px; }
+.news-featured { display:grid; grid-template-columns:2fr 1fr; gap:2px; margin-bottom:2px; }
+.news-card { background:var(--card-bg); border:1px solid var(--border); backdrop-filter:blur(10px); transition:all 0.4s; overflow:hidden; position:relative; }
+.news-card:hover { border-color:rgba(0,180,255,0.3); transform:translateY(-4px); box-shadow:0 20px 50px rgba(0,0,0,0.3); }
+.news-card-image { width:100%; height:220px; background:linear-gradient(135deg,var(--bg3),var(--surface)); display:flex; align-items:center; justify-content:center; font-size:64px; border-bottom:1px solid var(--border); position:relative; overflow:hidden; }
+.news-card-image::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(0,180,255,0.08),transparent); }
+.news-card-image.small { height:140px; font-size:40px; }
+.news-card-body { padding:28px 32px; }
+.news-card.featured .news-card-body { padding:36px 40px; }
+.news-category { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:3px; text-transform:uppercase; margin-bottom:10px; display:inline-block; padding:3px 10px; }
+.cat-company { color:var(--blue); border:1px solid rgba(0,180,255,0.3); background:rgba(0,180,255,0.08); }
+.cat-tech { color:var(--gold); border:1px solid rgba(245,200,66,0.3); background:rgba(245,200,66,0.08); }
+.cat-venture { color:#00e5a0; border:1px solid rgba(0,229,160,0.3); background:rgba(0,229,160,0.08); }
+.cat-insight { color:#ff7b00; border:1px solid rgba(255,123,0,0.3); background:rgba(255,123,0,0.08); }
+.news-title { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--white); line-height:1.1; margin-bottom:12px; }
+.news-card.featured .news-title { font-size:40px; }
+.news-excerpt { font-size:14px; color:var(--muted); line-height:1.75; font-weight:300; margin-bottom:20px; }
+.news-meta { display:flex; align-items:center; justify-content:space-between; }
+.news-date { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:1px; }
+.news-read { font-size:12px; color:var(--blue); text-decoration:none; font-weight:700; letter-spacing:2px; text-transform:uppercase; transition:all 0.2s; }
+.news-read:hover { gap:12px; letter-spacing:3px; }
+.news-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
+.news-sidebar-cards { display:flex; flex-direction:column; gap:2px; }
+.news-sidebar-card { background:var(--card-bg); border:1px solid var(--border); backdrop-filter:blur(10px); transition:all 0.3s; display:flex; flex-direction:column; }
+.news-sidebar-card:hover { border-color:rgba(0,180,255,0.3); }
+.sidebar-img { height:100px; background:linear-gradient(135deg,var(--bg3),var(--surface)); display:flex; align-items:center; justify-content:center; font-size:32px; border-bottom:1px solid var(--border); }
+.sidebar-body { padding:18px 20px; flex:1; display:flex; flex-direction:column; justify-content:space-between; }
+.sidebar-title { font-weight:700; color:var(--white); font-size:13px; line-height:1.4; margin-bottom:8px; }
+.sidebar-date { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:1px; }
+#newsletter { padding:80px 52px; background:var(--bg2); border-top:1px solid var(--border); }
+.newsletter-inner { max-width:600px; margin:0 auto; text-align:center; }
+.newsletter-inner h2 { font-family:'Bebas Neue',sans-serif; font-size:48px; color:var(--white); margin-bottom:16px; }
+.newsletter-inner p { font-size:15px; color:var(--muted); line-height:1.8; margin-bottom:32px; }
+.newsletter-form { display:flex; gap:0; }
+.newsletter-form input { flex:1; background:var(--surface); border:1px solid var(--border); border-right:none; color:var(--white); padding:16px 20px; font-family:'Exo 2',sans-serif; font-size:14px; outline:none; }
+.newsletter-form input:focus { border-color:var(--blue); }
+.newsletter-form button { background:linear-gradient(135deg,var(--blue),var(--blue2)); color:#fff; border:none; padding:16px 28px; font-family:'Exo 2',sans-serif; font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; cursor:none; transition:all 0.3s; white-space:nowrap; }
+.newsletter-form button:hover { box-shadow:0 0 24px rgba(0,180,255,0.4); }
+@media (max-width:1024px) { .news-featured { grid-template-columns:1fr; } .news-grid { grid-template-columns:1fr 1fr; } }
+@media (max-width:768px) { #news,#newsletter { padding-left:20px; padding-right:20px; } .news-grid { grid-template-columns:1fr; } .newsletter-form { flex-direction:column; } .newsletter-form input { border-right:1px solid var(--border); border-bottom:none; } }
+</style>
+</head>
+<body>
+<div id="nav-inject" data-root="../"></div>
+<div style="padding-top:72px"></div>
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="blue">▶ NEWSROOM</span><span>COMPANY UPDATES</span><span class="gold">INSIGHTS</span><span>TECH WATCH</span><span class="blue">▶ VENTURES NEWS</span><span>PRESS</span><span class="gold">MEDIA</span>
+    <span class="blue">▶ NEWSROOM</span><span>COMPANY UPDATES</span><span class="gold">INSIGHTS</span><span>TECH WATCH</span><span class="blue">▶ VENTURES NEWS</span><span>PRESS</span><span class="gold">MEDIA</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content container">
+    <div class="page-breadcrumb"><a href="../index.html">Home</a> › Newsroom</div>
+    <h1 class="page-hero-title">THE <span class="accent">EDGE</span> WIRE</h1>
+    <p class="page-hero-desc">Company news, technology insights, venture updates, and thought leadership from ieLAN Edge.</p>
+  </div>
+</div>
+
+<section id="news">
+  <div class="container">
+    <div class="section-label reveal">Latest News</div>
+    <div class="news-filter">
+      <button class="filter-btn active">All</button>
+      <button class="filter-btn">Company</button>
+      <button class="filter-btn">Technology</button>
+      <button class="filter-btn">Ventures</button>
+      <button class="filter-btn">Insights</button>
+    </div>
+
+    <!-- Featured + sidebar -->
+    <div class="news-featured" style="margin-bottom:2px">
+      <div class="news-card featured reveal">
+        <div class="news-card-image">🚀</div>
+        <div class="news-card-body">
+          <div class="news-category cat-company">Company</div>
+          <div class="news-title">ieLAN Edge Officially Launches: A Cross-Border Technology Company Built for the Future</div>
+          <p class="news-excerpt">After months of preparation and early client engagements, ieLAN Edge publicly launches its full suite of services — spanning technology solutions, digital transformation, AI, cloud, and business consulting. With headquarters in India , the company aims to become the definitive cross-border technology partner of its generation.</p>
+          <div class="news-meta">
+            <span class="news-date">March 2025</span>
+            <a href="#" class="news-read">Read More →</a>
+          </div>
+        </div>
+      </div>
+      <div class="news-sidebar-cards">
+        <div class="news-sidebar-card reveal">
+          <div class="sidebar-img">🤖</div>
+          <div class="sidebar-body">
+            <div>
+              <div class="news-category cat-tech" style="margin-bottom:6px">Technology</div>
+              <div class="sidebar-title">EdgeAI Labs Begins Development of Arabic-English Bilingual AI Platform</div>
+            </div>
+            <div class="sidebar-date">February 2025</div>
+          </div>
+        </div>
+        <div class="news-sidebar-card reveal reveal-delay-1">
+          <div class="sidebar-img">🌐</div>
+          <div class="sidebar-body">
+            <div>
+              <div class="news-category cat-venture" style="margin-bottom:6px">Venture</div>
+              <div class="sidebar-title">EdgeConnect Platform Design Complete — Beta Launch Planned for Q3 2025</div>
+            </div>
+            <div class="sidebar-date">January 2025</div>
+          </div>
+        </div>
+        <div class="news-sidebar-card reveal reveal-delay-2">
+          <div class="sidebar-img">💡</div>
+          <div class="sidebar-body">
+            <div>
+              <div class="news-category cat-insight" style="margin-bottom:6px">Insight</div>
+              <div class="sidebar-title">Why the India-MENA Corridor is the Biggest Opportunity in Tech Right Now</div>
+            </div>
+            <div class="sidebar-date">December 2024</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Grid -->
+    <div class="news-grid">
+      <div class="news-card reveal">
+        <div class="news-card-image small">☁️</div>
+        <div class="news-card-body">
+          <div class="news-category cat-tech">Technology</div>
+          <div class="news-title">Cloud-First is No Longer Enough: The Case for Cloud-Smart</div>
+          <p class="news-excerpt">As cloud costs spiral, ieLAN Edge shares its framework for building cloud-smart organisations — balancing performance, cost, and complexity.</p>
+          <div class="news-meta"><span class="news-date">Nov 2024</span><a href="#" class="news-read">Read →</a></div>
+        </div>
+      </div>
+      <div class="news-card reveal reveal-delay-1">
+        <div class="news-card-image small">🇮🇳🇪🇬</div>
+        <div class="news-card-body">
+          <div class="news-category cat-company">Company</div>
+          <div class="news-title">Reflections on Building a Cross-Border Company: Lessons from Year One</div>
+          <p class="news-excerpt">Founder Afaque Ahmed shares candid reflections on building a company that operates across two continents, two cultures, and two time zones.</p>
+          <div class="news-meta"><span class="news-date">Oct 2024</span><a href="#" class="news-read">Read →</a></div>
+        </div>
+      </div>
+      <div class="news-card reveal reveal-delay-2">
+        <div class="news-card-image small">📚</div>
+        <div class="news-card-body">
+          <div class="news-category cat-venture">Venture</div>
+          <div class="news-title">AmalEd: Reimagining Education for the Next 100 Million Digital Workers</div>
+          <p class="news-excerpt">A deep-dive into the AmalEd concept and why we believe education technology is the highest-impact venture ieLAN Edge can build.</p>
+          <div class="news-meta"><span class="news-date">Sep 2024</span><a href="#" class="news-read">Read →</a></div>
+        </div>
+      </div>
+      <div class="news-card reveal">
+        <div class="news-card-image small">🤖</div>
+        <div class="news-card-body">
+          <div class="news-category cat-insight">Insight</div>
+          <div class="news-title">LLMs in Arabic: The Next Frontier of AI That Nobody's Talking About</div>
+          <p class="news-excerpt">Arabic is spoken by 400 million people and is dramatically underrepresented in AI training data. Here's why this is a massive opportunity.</p>
+          <div class="news-meta"><span class="news-date">Aug 2024</span><a href="#" class="news-read">Read →</a></div>
+        </div>
+      </div>
+      <div class="news-card reveal reveal-delay-1">
+        <div class="news-card-image small">⚡</div>
+        <div class="news-card-body">
+          <div class="news-category cat-tech">Technology</div>
+          <div class="news-title">Five Principles for Building Software That Lasts</div>
+          <p class="news-excerpt">In a world of rapid iteration and AI-generated code, what does it mean to build software with genuine longevity? Our engineering team shares its principles.</p>
+          <div class="news-meta"><span class="news-date">Jul 2024</span><a href="#" class="news-read">Read →</a></div>
+        </div>
+      </div>
+      <div class="news-card reveal reveal-delay-2">
+        <div class="news-card-image small">🌍</div>
+        <div class="news-card-body">
+          <div class="news-category cat-insight">Insight</div>
+          <div class="news-title">The Rise of Emerging Market Tech: Why India and MENA Lead the Next Decade</div>
+          <p class="news-excerpt">Two of the world's fastest-growing digital economies are converging. ieLAN Edge explains why the intersection is where the action is.</p>
+          <div class="news-meta"><span class="news-date">Jun 2024</span><a href="#" class="news-read">Read →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="newsletter">
+  <div class="container">
+    <div class="newsletter-inner reveal">
+      <div class="section-label" style="justify-content:center">Stay Updated</div>
+      <h2>THE <span style="color:var(--gold)">EDGE</span> DIGEST</h2>
+      <p>Get the latest from ieLAN Edge — company news, technology insights, and thought leadership delivered to your inbox, monthly.</p>
+      <form class="newsletter-form" onsubmit="e=>{e.preventDefault();this.querySelector('button').textContent='✓ Subscribed!'}">
+        <input type="email" placeholder="Enter your email address" required>
+        <button type="submit">Subscribe →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div id="footer-inject" data-root="../"></div>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  });
+});
+document.querySelector('.newsletter-form').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button');
+  btn.textContent = '✓ Subscribed!';
+  btn.style.background = 'linear-gradient(135deg,#00e5a0,#00b4ff)';
+});
+</script>
+</body>
+</html>

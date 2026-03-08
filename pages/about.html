@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — ieLAN Edge</title>
+<meta name="description" content="Learn about ieLAN Edge — our story, mission, values, and the team behind the vision.">
+<meta name="theme-color" content="#00b4ff">
+<link rel="manifest" href="../manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+#mission { padding:120px 52px; background:var(--bg2); }
+.mission-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:60px; }
+.mission-text p { font-size:16px; line-height:1.85; color:var(--text); margin-bottom:22px; font-weight:300; }
+.mission-text p strong { color:var(--blue); font-weight:700; }
+.kun-block { display:flex; align-items:center; gap:20px; background:var(--card-bg); border:1px solid var(--border); border-left:3px solid var(--gold); padding:24px 28px; margin-top:32px; backdrop-filter:blur(10px); transition:all 0.3s; }
+.kun-block:hover { border-color:rgba(245,200,66,0.4); box-shadow:0 8px 32px rgba(245,200,66,0.1); }
+.kun-arabic { font-size:52px; color:var(--gold); line-height:1; font-weight:900; text-shadow:0 0 24px rgba(245,200,66,0.45); }
+.kun-text { font-size:14px; color:var(--muted); line-height:1.7; }
+.kun-text strong { color:var(--text); display:block; font-size:16px; margin-bottom:6px; font-weight:700; }
+.values-list { display:flex; flex-direction:column; gap:2px; }
+.value-item { display:flex; align-items:center; gap:20px; background:var(--card-bg); border:1px solid var(--border); padding:22px 26px; transition:all 0.3s; backdrop-filter:blur(10px); position:relative; overflow:hidden; }
+.value-item::before { content:''; position:absolute; left:0; top:0; bottom:0; width:3px; background:linear-gradient(to bottom,var(--blue),var(--gold)); transform:scaleY(0); transition:transform 0.3s; }
+.value-item:hover { background:rgba(0,180,255,0.05); transform:translateX(6px); }
+.value-item:hover::before { transform:scaleY(1); }
+.value-icon { font-size:26px; flex-shrink:0; }
+.value-title { font-weight:700; color:var(--white); font-size:15px; }
+.value-desc { font-size:13px; color:var(--muted); margin-top:2px; }
+
+#story { padding:120px 52px; background:var(--bg); position:relative; overflow:hidden; }
+#story::before { content:'كن'; position:absolute; right:-20px; top:50%; transform:translateY(-50%); font-size:400px; color:rgba(0,180,255,0.025); font-weight:900; pointer-events:none; line-height:1; }
+.story-timeline { margin-top:60px; position:relative; }
+.story-timeline::before { content:''; position:absolute; left:0; top:0; bottom:0; width:1px; background:linear-gradient(to bottom,transparent,var(--blue),var(--gold),transparent); }
+.timeline-item { display:grid; grid-template-columns:160px 1fr; gap:40px; padding:0 0 60px 40px; position:relative; }
+.timeline-item::before { content:''; position:absolute; left:-5px; top:8px; width:11px; height:11px; background:var(--blue); border-radius:50%; box-shadow:0 0 12px var(--blue); }
+.timeline-year { font-family:'Bebas Neue',sans-serif; font-size:48px; color:var(--blue); line-height:1; }
+.timeline-title { font-weight:800; color:var(--white); font-size:18px; margin-bottom:8px; }
+.timeline-desc { font-size:14px; color:var(--muted); line-height:1.75; font-weight:300; }
+
+#team { padding:120px 52px; background:var(--bg2); }
+.team-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:60px; }
+.team-card { background:var(--card-bg); border:1px solid var(--border); padding:36px 28px; text-align:center; transition:all 0.4s; backdrop-filter:blur(10px); position:relative; overflow:hidden; }
+.team-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--gold)); transform:scaleX(0); transition:transform 0.4s; }
+.team-card:hover { border-color:rgba(0,180,255,0.3); transform:translateY(-6px); }
+.team-card:hover::before { transform:scaleX(1); }
+.team-avatar { width:80px; height:80px; background:linear-gradient(135deg,var(--blue),var(--blue2)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Bebas Neue',sans-serif; font-size:32px; color:#fff; margin:0 auto 20px; position:relative; }
+.team-avatar::after { content:''; position:absolute; inset:-4px; border-radius:50%; border:1px solid var(--border); }
+.team-name { font-weight:800; color:var(--white); font-size:16px; margin-bottom:4px; }
+.team-role { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--blue); letter-spacing:2px; text-transform:uppercase; margin-bottom:12px; }
+.team-bio { font-size:13px; color:var(--muted); line-height:1.6; font-weight:300; }
+.team-socials { display:flex; gap:8px; justify-content:center; margin-top:16px; }
+.team-social { width:30px; height:30px; border:1px solid var(--border); background:var(--surface); display:flex; align-items:center; justify-content:center; font-size:12px; transition:all 0.3s; text-decoration:none; cursor:none; color:var(--muted); }
+.team-social:hover { border-color:var(--blue); color:var(--blue); background:rgba(0,180,255,0.1); }
+
+#presence { padding:120px 52px; background:var(--bg); }
+.presence-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:60px; }
+.presence-card { background:var(--card-bg); border:1px solid var(--border); padding:48px 36px; text-align:center; transition:all 0.4s; backdrop-filter:blur(10px); }
+.presence-card:hover { border-color:rgba(0,180,255,0.3); transform:translateY(-6px); }
+.presence-flag { font-size:48px; margin-bottom:20px; }
+.presence-country { font-family:'Bebas Neue',sans-serif; font-size:32px; color:var(--white); margin-bottom:8px; }
+.presence-city { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue); letter-spacing:3px; text-transform:uppercase; margin-bottom:16px; }
+.presence-desc { font-size:14px; color:var(--muted); line-height:1.7; font-weight:300; }
+.presence-status { display:inline-block; margin-top:16px; padding:4px 12px; font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; }
+.status-hq { background:rgba(0,229,160,0.1); border:1px solid rgba(0,229,160,0.3); color:var(--green); }
+.status-remote { background:rgba(0,180,255,0.1); border:1px solid rgba(0,180,255,0.3); color:var(--blue); }
+
+@media (max-width:1024px) { .team-grid { grid-template-columns:1fr 1fr; } .presence-grid { grid-template-columns:1fr; } }
+@media (max-width:768px) {
+  .mission-grid { grid-template-columns:1fr; }
+  .timeline-item { grid-template-columns:1fr; gap:8px; }
+  .team-grid { grid-template-columns:1fr; }
+  #mission,#story,#team,#presence { padding-left:20px; padding-right:20px; }
+}
+</style>
+</head>
+<body>
+<div id="nav-inject" data-root="../"></div>
+<div style="padding-top:72px"></div>
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="blue">▶ ABOUT US</span><span>OUR STORY</span><span class="gold">AMAL TO IMPACT</span><span>INDIA </span><span class="blue">▶ OUR MISSION</span><span>CROSS-BORDER DNA</span><span class="gold">EDGE MINDSET</span><span>PURPOSE DRIVEN</span>
+    <span class="blue">▶ ABOUT US</span><span>OUR STORY</span><span class="gold">AMAL TO IMPACT</span><span>INDIA </span><span class="blue">▶ OUR MISSION</span><span>CROSS-BORDER DNA</span><span class="gold">EDGE MINDSET</span><span>PURPOSE DRIVEN</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content container">
+    <div class="page-breadcrumb"><a href="../index.html">Home</a> › About Us</div>
+    <h1 class="page-hero-title">OUR <span class="accent">STORY</span></h1>
+    <p class="page-hero-desc">Born at the intersection of two continents, two cultures, and one shared vision — to turn Amal into global impact.</p>
+  </div>
+</div>
+
+<section id="mission">
+  <div class="container">
+    <div class="section-label reveal">Our Foundation</div>
+    <h2 class="section-title reveal">MISSION &<br><span class="gold">VALUES</span></h2>
+    <div class="mission-grid">
+      <div class="mission-text">
+        <p>ieLAN Edge was founded on a powerful belief: that <strong>technology, when built with purpose, can transform lives.</strong> We bridge the gap between East and West, between ambition and execution, between potential and impact.</p>
+        <p>The name itself tells our story — <strong>ieLAN</strong> (إعلان) means "declaration" in Arabic, and <strong>Edge</strong> represents operating at the frontier. We declare that a new kind of company is possible — one that is cross-border by design, purpose-driven at its core, and relentlessly focused on the future.</p>
+        <p>From our presence in <strong>India </strong>, we serve clients across the globe, bringing the best of two emerging-market perspectives to every engagement.</p>
+        <div class="kun-block">
+          <div class="kun-arabic">كُن</div>
+          <div class="kun-text">
+            <strong>Kun Fayakun — "Be, and it is"</strong>
+            Our guiding philosophy. When vision meets action and intent meets effort, transformation becomes inevitable. We build companies, solutions, and futures — one purposeful step at a time.
+          </div>
+        </div>
+      </div>
+      <div class="values-list">
+        <div class="value-item reveal">
+          <span class="value-icon">🎯</span>
+          <div><div class="value-title">Purpose Before Profit</div><div class="value-desc">Every venture, project, and decision is anchored in real-world impact.</div></div>
+        </div>
+        <div class="value-item reveal reveal-delay-1">
+          <span class="value-icon">🌍</span>
+          <div><div class="value-title">Cross-Border by Design</div><div class="value-desc">We operate across cultures, markets, and geographies by default.</div></div>
+        </div>
+        <div class="value-item reveal reveal-delay-2">
+          <span class="value-icon">⚡</span>
+          <div><div class="value-title">Edge Thinking</div><div class="value-desc">We operate at the frontier — bold, experimental, and always ahead.</div></div>
+        </div>
+        <div class="value-item reveal reveal-delay-3">
+          <span class="value-icon">🤝</span>
+          <div><div class="value-title">Partnership Mindset</div><div class="value-desc">We don't just deliver services — we become true partners in growth.</div></div>
+        </div>
+        <div class="value-item reveal reveal-delay-4">
+          <span class="value-icon">🔓</span>
+          <div><div class="value-title">Radical Transparency</div><div class="value-desc">Honest communication, open processes, and accountability at every level.</div></div>
+        </div>
+        <div class="value-item reveal">
+          <span class="value-icon">♾️</span>
+          <div><div class="value-title">Continuous Growth</div><div class="value-desc">Learning, adapting, and evolving is non-negotiable — for us and our clients.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="story">
+  <div class="container" style="position:relative;z-index:2">
+    <div class="section-label reveal">Timeline</div>
+    <h2 class="section-title reveal">THE <span class="gold">JOURNEY</span></h2>
+    <div class="story-timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2021</div>
+        <div>
+          <div class="timeline-title">The Vision Emerges</div>
+          <p class="timeline-desc">The founding concept of ieLAN Edge takes shape — a company designed from day one to bridge India , combining the technology strengths of both nations with a shared purpose: Amal to Impact.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2022</div>
+        <div>
+          <div class="timeline-title">Foundation & First Engagements</div>
+          <p class="timeline-desc">ieLAN Edge is formally established. First client engagements begin across technology consulting and digital transformation. The core team assembles across India . Early venture concepts initiated.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2023</div>
+        <div>
+          <div class="timeline-title">Launch & Scale</div>
+          <p class="timeline-desc">Full public launch of ieLAN Edge. Multiple service lines operational. EdgeConnect and EdgeAI Labs enter active development. Team grows. First cross-border partnerships signed. The Edge is live.</p>
+        </div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2024+</div>
+        <div>
+          <div class="timeline-title">The Edge Expands</div>
+          <p class="timeline-desc">Expansion across MENA, South Asia, and Europe. New ventures launched. AmalEd rolls out its first cohort. ieLAN Edge becomes the definitive cross-border technology and innovation company of its generation.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="team">
+  <div class="container">
+    <div class="section-label reveal">Our People</div>
+    <h2 class="section-title reveal">THE <span class="gold">EDGE</span> TEAM</h2>
+    <p class="section-sub reveal">A diverse group of builders, thinkers, and doers united by one mission.</p>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-avatar">AF</div>
+        <div class="team-name">Management</div>
+        <div class="team-role">Founder & CEO</div>
+        <p class="team-bio">Visionary behind ieLAN Edge. Cross-border entrepreneur with deep roots in India , building at the intersection of technology and purpose.</p>
+        <div class="team-socials"><a href="#" class="team-social">in</a><a href="#" class="team-social">𝕏</a></div>
+      </div>
+      <div class="team-card reveal reveal-delay-1">
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--gold),var(--orange))">TE</div>
+        <div class="team-name">Technology Team</div>
+        <div class="team-role">Engineering & AI</div>
+        <p class="team-bio">Our engineering team spans full-stack, AI/ML, cloud, and mobile — building robust, scalable solutions with an obsession for quality.</p>
+        <div class="team-socials"><a href="#" class="team-social">⌥</a></div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--green),var(--blue))">DS</div>
+        <div class="team-name">Design Studio</div>
+        <div class="team-role">UX & Product Design</div>
+        <p class="team-bio">Design thinkers who craft experiences that are not just beautiful, but purposeful — from user research to pixel-perfect delivery.</p>
+        <div class="team-socials"><a href="#" class="team-social">in</a></div>
+      </div>
+      <div class="team-card reveal reveal-delay-3">
+        <div class="team-avatar" style="background:linear-gradient(135deg,var(--blue2),var(--blue))">GA</div>
+        <div class="team-name">Growth & Advisory</div>
+        <div class="team-role">Strategy & Partnerships</div>
+        <p class="team-bio">Business strategists, market analysts, and partnership leads who open doors across India, MENA, and global markets.</p>
+        <div class="team-socials"><a href="#" class="team-social">in</a><a href="#" class="team-social">𝕏</a></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="careers.html" class="btn-gold reveal">Join the Team →</a>
+    </div>
+  </div>
+</section>
+
+<section id="presence">
+  <div class="container">
+    <div class="section-label reveal">Global Presence</div>
+    <h2 class="section-title reveal">WHERE WE <span class="gold">OPERATE</span></h2>
+    <div class="presence-grid">
+      <div class="presence-card reveal">
+        <div class="presence-flag">🇮🇳</div>
+        <div class="presence-country">India</div>
+        <div class="presence-city">Noida · UP</div>
+        <p class="presence-desc">Our South Asia headquarters. Home to our core technology and product teams, driving innovation at the heart of India's tech ecosystem.</p>
+        <div class="presence-status status-hq">Headquarters</div>
+      </div>
+      <!-- <div class="presence-card reveal reveal-delay-1">
+        <div class="presence-flag">🇪🇬</div>
+        <div class="presence-country">Egypt</div>
+        <div class="presence-city">Cairo · Egypt</div>
+        <p class="presence-desc">Our MENA headquarters and gateway to the Arab world. Strategic hub for regional partnerships, consulting, and cross-border operations.</p>
+        <div class="presence-status status-hq">Headquarters</div>
+      </div> -->
+      <div class="presence-card reveal reveal-delay-2">
+        <div class="presence-flag">🌐</div>
+        <div class="presence-country">Global</div>
+        <div class="presence-city">Remote First</div>
+        <p class="presence-desc">A distributed global team with contributors and partners across Europe, the Gulf, Southeast Asia, and beyond. The Edge has no borders.</p>
+        <div class="presence-status status-remote">Global Remote</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-inject" data-root="../"></div>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

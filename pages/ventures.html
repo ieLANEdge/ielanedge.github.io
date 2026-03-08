@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ventures — ieLAN Edge</title>
+<meta name="theme-color" content="#00b4ff">
+<link rel="manifest" href="../manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+#ventures-list { padding:80px 52px 120px; background:var(--bg); }
+.ventures-full-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:2px; margin-top:40px; }
+.venture-full-card { background:var(--card-bg); border:1px solid var(--border); padding:48px 44px; transition:all 0.4s; backdrop-filter:blur(10px); position:relative; overflow:hidden; }
+.venture-full-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--gold)); transform:scaleX(0); transition:transform 0.4s; }
+.venture-full-card:hover { border-color:rgba(0,180,255,0.3); transform:translateY(-6px); box-shadow:0 24px 60px rgba(0,0,0,0.3); }
+.venture-full-card:hover::before { transform:scaleX(1); }
+.venture-header { display:flex; align-items:flex-start; justify-content:space-between; margin-bottom:24px; }
+.venture-emoji-big { font-size:56px; line-height:1; }
+.venture-stage-badge { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:6px 14px; border:1px solid; }
+.stage-live { color:#00e5a0; border-color:rgba(0,229,160,0.3); background:rgba(0,229,160,0.08); }
+.stage-dev { color:var(--blue); border-color:rgba(0,180,255,0.3); background:rgba(0,180,255,0.08); }
+.stage-concept { color:var(--gold); border-color:rgba(245,200,66,0.3); background:rgba(245,200,66,0.08); }
+.venture-name-big { font-family:'Bebas Neue',sans-serif; font-size:48px; color:var(--white); line-height:1; margin-bottom:8px; }
+.venture-tagline { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue); letter-spacing:2px; margin-bottom:20px; }
+.venture-description { font-size:15px; color:var(--text); line-height:1.8; font-weight:300; margin-bottom:28px; }
+.venture-tags { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:28px; }
+.venture-pill { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--muted); letter-spacing:1px; padding:4px 12px; border:1px solid var(--border); background:var(--surface); }
+.venture-cta { display:flex; gap:12px; }
+.btn-venture { background:transparent; border:1px solid var(--blue); color:var(--blue); padding:10px 24px; font-family:'Exo 2',sans-serif; font-size:12px; font-weight:800; letter-spacing:2px; text-transform:uppercase; cursor:none; transition:all 0.3s; text-decoration:none; clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%); }
+.btn-venture:hover { background:var(--blue); color:#fff; }
+.venture-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-bottom:28px; }
+.venture-metric { background:var(--surface); border:1px solid var(--border); padding:12px; text-align:center; }
+.venture-metric .v { font-family:'Bebas Neue',sans-serif; font-size:22px; color:var(--blue); line-height:1; }
+.venture-metric .l { font-size:9px; color:var(--muted); letter-spacing:1px; margin-top:2px; }
+
+#invest { padding:100px 52px; background:var(--bg2); }
+.invest-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; margin-top:60px; }
+.invest-text p { font-size:15px; color:var(--muted); line-height:1.85; font-weight:300; margin-bottom:20px; }
+.invest-cards { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+.invest-card { background:var(--card-bg); border:1px solid var(--border); padding:28px 24px; backdrop-filter:blur(10px); transition:all 0.3s; }
+.invest-card:hover { border-color:rgba(245,200,66,0.3); transform:translateY(-3px); }
+.invest-icon { font-size:32px; margin-bottom:12px; }
+.invest-title { font-weight:800; color:var(--white); font-size:15px; margin-bottom:6px; }
+.invest-desc { font-size:13px; color:var(--muted); line-height:1.6; font-weight:300; }
+
+@media (max-width:1024px) { .ventures-full-grid { grid-template-columns:1fr; } .invest-grid { grid-template-columns:1fr; } }
+@media (max-width:768px) { #ventures-list,#invest { padding-left:20px; padding-right:20px; } .invest-cards { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="nav-inject" data-root="../"></div>
+<div style="padding-top:72px"></div>
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="blue">▶ VENTURES</span><span>BUILDING THE FUTURE</span><span class="gold">EDGECONNECT</span><span>EDGEAI LABS</span><span class="blue">▶ AMALED</span><span>EDGESTACK</span><span class="gold">INNOVATION STUDIO</span>
+    <span class="blue">▶ VENTURES</span><span>BUILDING THE FUTURE</span><span class="gold">EDGECONNECT</span><span>EDGEAI LABS</span><span class="blue">▶ AMALED</span><span>EDGESTACK</span><span class="gold">INNOVATION STUDIO</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content container">
+    <div class="page-breadcrumb"><a href="../index.html">Home</a> › Ventures</div>
+    <h1 class="page-hero-title">OUR <span class="accent">VENTURES</span></h1>
+    <p class="page-hero-desc">ieLAN Edge doesn't just advise — we build. Here are the companies and products we're actively creating, scaling, and investing in.</p>
+  </div>
+</div>
+
+<section id="ventures-list">
+  <div class="container">
+    <div class="section-label reveal">Active Portfolio</div>
+    <h2 class="section-title reveal">THE <span class="gold">EDGE</span> PORTFOLIO</h2>
+    <div class="ventures-full-grid">
+
+      <div class="venture-full-card reveal">
+        <div class="venture-header">
+          <div class="venture-emoji-big">🌐</div>
+          <div class="venture-stage-badge stage-dev">In Development</div>
+        </div>
+        <div class="venture-name-big">EdgeConnect</div>
+        <div class="venture-tagline">B2B CROSS-BORDER TRADE PLATFORM</div>
+        <p class="venture-description">A business-to-business marketplace and connection platform enabling Indian and MENA companies to discover each other, forge partnerships, and transact across borders with trust and compliance built in.</p>
+        <div class="venture-metrics">
+          <div class="venture-metric"><div class="v">2</div><div class="l">Markets</div></div>
+          <div class="venture-metric"><div class="v">Q3 25</div><div class="l">Beta Launch</div></div>
+          <div class="venture-metric"><div class="v">B2B</div><div class="l">Segment</div></div>
+        </div>
+        <div class="venture-tags">
+          <span class="venture-pill">B2B Marketplace</span>
+          <span class="venture-pill">India-MENA</span>
+          <span class="venture-pill">Trade</span>
+          <span class="venture-pill">Compliance</span>
+          <span class="venture-pill">Fintech</span>
+        </div>
+        <div class="venture-cta">
+          <a href="contact.html" class="btn-venture">Partner With Us</a>
+        </div>
+      </div>
+
+      <div class="venture-full-card reveal reveal-delay-1">
+        <div class="venture-header">
+          <div class="venture-emoji-big">🤖</div>
+          <div class="venture-stage-badge stage-dev">In Development</div>
+        </div>
+        <div class="venture-name-big">EdgeAI Labs</div>
+        <div class="venture-tagline">APPLIED AI RESEARCH & PRODUCT STUDIO</div>
+        <p class="venture-description">An applied AI studio building multilingual intelligence products — with a particular focus on Arabic-English bilingual AI tools, serving the underserved MENA AI market with products built in, and for, the region.</p>
+        <div class="venture-metrics">
+          <div class="venture-metric"><div class="v">2+</div><div class="l">Languages</div></div>
+          <div class="venture-metric"><div class="v">2025</div><div class="l">Launch Year</div></div>
+          <div class="venture-metric"><div class="v">B2B</div><div class="l">Segment</div></div>
+        </div>
+        <div class="venture-tags">
+          <span class="venture-pill">AI / LLMs</span>
+          <span class="venture-pill">Arabic NLP</span>
+          <span class="venture-pill">Multilingual</span>
+          <span class="venture-pill">SaaS</span>
+          <span class="venture-pill">MENA</span>
+        </div>
+        <div class="venture-cta">
+          <a href="contact.html" class="btn-venture">Collaborate</a>
+        </div>
+      </div>
+
+      <div class="venture-full-card reveal">
+        <div class="venture-header">
+          <div class="venture-emoji-big">📚</div>
+          <div class="venture-stage-badge stage-concept">Concept Stage</div>
+        </div>
+        <div class="venture-name-big">AmalEd</div>
+        <div class="venture-tagline">EDTECH FOR EMERGING MARKETS</div>
+        <p class="venture-description">An education technology platform empowering youth across India and the wider MENA and South Asia regions with skills for the digital economy — from coding and AI to entrepreneurship and digital literacy.</p>
+        <div class="venture-metrics">
+          <div class="venture-metric"><div class="v">2+</div><div class="l">Regions</div></div>
+          <div class="venture-metric"><div class="v">2026</div><div class="l">Launch Target</div></div>
+          <div class="venture-metric"><div class="v">B2C</div><div class="l">Segment</div></div>
+        </div>
+        <div class="venture-tags">
+          <span class="venture-pill">EdTech</span>
+          <span class="venture-pill">Digital Skills</span>
+          <span class="venture-pill">Youth</span>
+          <span class="venture-pill">India</span>
+          <span class="venture-pill">MENA</span>
+        </div>
+        <div class="venture-cta">
+          <a href="contact.html" class="btn-venture">Express Interest</a>
+        </div>
+      </div>
+
+      <div class="venture-full-card reveal reveal-delay-1">
+        <div class="venture-header">
+          <div class="venture-emoji-big">⚡</div>
+          <div class="venture-stage-badge stage-concept">Concept Stage</div>
+        </div>
+        <div class="venture-name-big">EdgeStack</div>
+        <div class="venture-tagline">DEVELOPER PLATFORM FOR MENA & SOUTH ASIA</div>
+        <p class="venture-description">A SaaS toolkit and developer platform purpose-built for rapid product launch in emerging markets — handling payments, compliance, auth, and infrastructure so founders can focus on what matters: their product.</p>
+        <div class="venture-metrics">
+          <div class="venture-metric"><div class="v">10+</div><div class="l">Markets</div></div>
+          <div class="venture-metric"><div class="v">2026</div><div class="l">Launch Target</div></div>
+          <div class="venture-metric"><div class="v">B2D</div><div class="l">Segment</div></div>
+        </div>
+        <div class="venture-tags">
+          <span class="venture-pill">Developer Tools</span>
+          <span class="venture-pill">SaaS</span>
+          <span class="venture-pill">Payments</span>
+          <span class="venture-pill">Infra</span>
+          <span class="venture-pill">Emerging Markets</span>
+        </div>
+        <div class="venture-cta">
+          <a href="contact.html" class="btn-venture">Join Waitlist</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="invest">
+  <div class="container">
+    <div class="section-label reveal">Venture Investment</div>
+    <h2 class="section-title reveal">COLLABORATE &<br><span class="gold">INVEST</span></h2>
+    <div class="invest-grid">
+      <div class="invest-text">
+        <p class="reveal">ieLAN Edge operates as both a builder and an investor. If you're a founder working in the India-MENA corridor, or a company looking for a strategic partner with deep cross-border expertise, we want to hear from you.</p>
+        <p class="reveal">We offer co-building partnerships, strategic investment, market access, and hands-on operational support — not just capital.</p>
+        <div style="margin-top:32px"><a href="contact.html" class="btn-gold reveal">Talk to Us →</a></div>
+      </div>
+      <div class="invest-cards">
+        <div class="invest-card reveal">
+          <div class="invest-icon">🤝</div>
+          <div class="invest-title">Co-Build</div>
+          <p class="invest-desc">We partner with founders from day one — bringing technology, capital, and networks.</p>
+        </div>
+        <div class="invest-card reveal reveal-delay-1">
+          <div class="invest-icon">💰</div>
+          <div class="invest-title">Strategic Investment</div>
+          <p class="invest-desc">Early-stage investment in companies aligned with our cross-border mission.</p>
+        </div>
+        <div class="invest-card reveal reveal-delay-2">
+          <div class="invest-icon">🌍</div>
+          <div class="invest-title">Market Access</div>
+          <p class="invest-desc">Unlock India and MENA markets through our established networks and presence.</p>
+        </div>
+        <div class="invest-card reveal reveal-delay-3">
+          <div class="invest-icon">⚡</div>
+          <div class="invest-title">Operational Support</div>
+          <p class="invest-desc">Hands-on support across product, technology, talent, and go-to-market.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-inject" data-root="../"></div>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

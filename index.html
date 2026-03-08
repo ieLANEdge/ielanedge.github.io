@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ieLAN Edge — Amal to Impact | Technology & Innovation</title>
+<meta name="description" content="ieLAN Edge is a cross-border technology and innovation company bridging India to the world. From Amal to Impact.">
+<meta property="og:title" content="ieLAN Edge — Amal to Impact">
+<meta property="og:description" content="Technology, Innovation, and Purpose-Driven ventures from India and beyond.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#00b4ff">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="assets/icons/icon-192.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:ital,wght@0,300;0,400;0,600;0,800;0,900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/global.css">
+<style>
+/* === INDEX-SPECIFIC === */
+#hero { min-height:100vh; display:flex; flex-direction:column; position:relative; overflow:hidden; }
+.hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 70% 70% at 65% 45%,var(--hero-glow),transparent),radial-gradient(ellipse 35% 50% at 85% 70%,rgba(245,200,66,0.05),transparent),radial-gradient(ellipse 40% 40% at 15% 80%,rgba(0,100,200,0.05),transparent); }
+.hero-grid { position:absolute; inset:0; background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px); background-size:64px 64px; mask-image:radial-gradient(ellipse 90% 90% at 50% 50%,black,transparent); }
+.slash { position:absolute; width:2px; background:linear-gradient(to bottom,transparent,var(--blue),transparent); transform:rotate(18deg); opacity:0; animation:slashFade 1.2s ease forwards; }
+.slash1 { top:-20%; right:8%; height:140%; animation-delay:0.5s; }
+.slash2 { top:-20%; right:15%; height:140%; width:1px; background:linear-gradient(to bottom,transparent,var(--gold),transparent); animation-delay:0.7s; }
+.slash3 { top:-20%; right:22%; height:140%; width:1px; animation-delay:0.9s; }
+@keyframes slashFade { to { opacity:0.25; } }
+
+.hero-main { flex:1; display:flex; align-items:center; padding:140px 52px 100px; position:relative; z-index:2; }
+.hero-layout { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; width:100%; }
+.hero-tag { display:inline-flex; align-items:center; gap:8px; background:rgba(0,180,255,0.08); border:1px solid rgba(0,180,255,0.2); padding:6px 16px; font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue); letter-spacing:2px; margin-bottom:28px; animation:fadeUp 0.8s ease both; }
+.hero-tag::before { content:'▶'; font-size:8px; }
+.hero-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(60px,9vw,118px); line-height:0.9; letter-spacing:2px; color:var(--white); animation:fadeUp 0.8s 0.1s ease both; }
+.hero-title .line2 { background:linear-gradient(135deg,var(--blue) 0%,var(--gold) 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-title .line3 { -webkit-text-stroke:1.5px var(--blue); -webkit-text-fill-color:transparent; opacity:0.35; }
+.hero-sub { font-size:16px; font-weight:300; color:var(--muted); line-height:1.8; margin-top:28px; max-width:480px; animation:fadeUp 0.8s 0.2s ease both; }
+.hero-sub strong { color:var(--text); font-weight:700; }
+.hero-cta { display:flex; gap:16px; margin-top:44px; flex-wrap:wrap; animation:fadeUp 0.8s 0.3s ease both; }
+.hero-right { position:relative; display:flex; align-items:center; justify-content:center; animation:fadeUp 0.8s 0.2s ease both; }
+.hero-orbit { width:480px; height:480px; position:relative; }
+.hero-orbit-ring { position:absolute; border-radius:50%; border:1px solid var(--border); }
+.orbit-1 { inset:0; animation:orbitSpin 20s linear infinite; }
+.orbit-2 { inset:40px; animation:orbitSpin 30s linear infinite reverse; border-style:dashed; border-color:rgba(245,200,66,0.15); }
+.orbit-3 { inset:80px; animation:orbitSpin 15s linear infinite; border-color:rgba(0,180,255,0.1); }
+@keyframes orbitSpin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.orbit-dot { position:absolute; width:10px; height:10px; background:var(--blue); border-radius:50%; box-shadow:0 0 12px var(--blue); top:50%; left:100%; transform:translate(-50%,-50%); }
+.orbit-dot.gold { background:var(--gold); box-shadow:0 0 12px var(--gold); top:0; left:50%; }
+.hero-center-box { position:absolute; inset:120px; background:var(--card-bg); border:1px solid var(--border); backdrop-filter:blur(20px); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:8px; }
+.hero-center-logo { font-family:'Bebas Neue',sans-serif; font-size:48px; background:linear-gradient(135deg,var(--blue),var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; }
+.hero-center-tag { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:3px; }
+.hero-metrics { position:absolute; display:flex; flex-direction:column; gap:8px; }
+.hero-metrics.left { left:-60px; }
+.hero-metrics.right { right:-60px; }
+.metric-chip { background:var(--card-bg); border:1px solid var(--border); backdrop-filter:blur(10px); padding:10px 16px; display:flex; flex-direction:column; gap:2px; min-width:130px; }
+.metric-chip .val { font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--blue); line-height:1; }
+.metric-chip .val.gold { color:var(--gold); }
+.metric-chip .lbl { font-family:'JetBrains Mono',monospace; font-size:9px; color:var(--muted); letter-spacing:2px; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+@keyframes glowPulse { 0%,100%{opacity:0.6;transform:scale(1)} 50%{opacity:1;transform:scale(1.04)} }
+
+/* === SERVICES SECTION === */
+#services-home { padding:120px 52px; background:var(--bg); }
+.services-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:60px; }
+.service-card { background:var(--card-bg); border:1px solid var(--border); padding:44px 36px; position:relative; overflow:hidden; transition:all 0.4s; backdrop-filter:blur(10px); }
+.service-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--blue),var(--gold)); transform:scaleX(0); transition:transform 0.4s; }
+.service-card:hover { border-color:rgba(0,180,255,0.3); transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,0.3); }
+.service-card:hover::before { transform:scaleX(1); }
+.service-icon { font-size:40px; margin-bottom:20px; display:block; }
+.service-num { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:2px; margin-bottom:12px; display:block; }
+.service-title { font-family:'Bebas Neue',sans-serif; font-size:30px; color:var(--white); margin-bottom:14px; letter-spacing:1px; }
+.service-desc { font-size:14px; color:var(--muted); line-height:1.75; font-weight:300; margin-bottom:20px; }
+.service-link { font-size:12px; color:var(--blue); text-decoration:none; font-weight:700; letter-spacing:2px; text-transform:uppercase; display:inline-flex; align-items:center; gap:6px; transition:gap 0.2s; }
+.service-link:hover { gap:12px; }
+
+/* === WHY US === */
+#why { padding:120px 52px; background:var(--bg2); position:relative; }
+.why-bg { position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(0,180,255,0.05),transparent); }
+.why-layout { display:grid; grid-template-columns:1fr 2fr; gap:80px; align-items:center; margin-top:60px; }
+.why-big-num { font-family:'Bebas Neue',sans-serif; font-size:200px; background:linear-gradient(135deg,var(--blue),transparent); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:0.85; }
+.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+.why-card { background:var(--card-bg); border:1px solid var(--border); padding:32px 28px; transition:all 0.4s; backdrop-filter:blur(10px); }
+.why-card:hover { background:rgba(0,180,255,0.06); border-color:rgba(0,180,255,0.3); transform:translateY(-4px); }
+.why-num { font-family:'Bebas Neue',sans-serif; font-size:48px; background:linear-gradient(135deg,var(--blue),var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; line-height:1; margin-bottom:8px; }
+.why-title { font-weight:800; color:var(--white); font-size:15px; margin-bottom:8px; }
+.why-desc { font-size:13px; color:var(--muted); line-height:1.65; font-weight:300; }
+
+/* === VENTURES PREVIEW === */
+#ventures-home { padding:120px 52px; background:var(--bg); }
+.ventures-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; margin-top:60px; }
+.venture-card { background:var(--card-bg); border:1px solid var(--border); padding:32px 24px; transition:all 0.4s; backdrop-filter:blur(10px); position:relative; overflow:hidden; }
+.venture-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--gold)); transform:scaleX(0); transition:transform 0.4s; transform-origin:left; }
+.venture-card:hover { border-color:rgba(0,180,255,0.3); transform:translateY(-6px); }
+.venture-card:hover::after { transform:scaleX(1); }
+.venture-emoji { font-size:36px; margin-bottom:16px; }
+.venture-stage { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:3px 10px; border:1px solid; margin-bottom:14px; display:inline-block; }
+.stage-live { color:var(--green); border-color:rgba(0,229,160,0.3); background:rgba(0,229,160,0.08); }
+.stage-dev { color:var(--blue); border-color:rgba(0,180,255,0.3); background:rgba(0,180,255,0.08); }
+.stage-concept { color:var(--gold); border-color:rgba(245,200,66,0.3); background:rgba(245,200,66,0.08); }
+.venture-name { font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--white); margin-bottom:8px; }
+.venture-desc { font-size:13px; color:var(--muted); line-height:1.6; font-weight:300; }
+
+/* === NUMBERS === */
+#numbers { padding:0 52px; }
+
+/* === CTA BAND === */
+#cta-band { padding:100px 52px; background:var(--bg2); position:relative; overflow:hidden; }
+.cta-band-bg { position:absolute; inset:0; background:radial-gradient(ellipse 80% 80% at 50% 50%,rgba(0,180,255,0.08),transparent); }
+.cta-band-inner { position:relative; z-index:2; text-align:center; }
+.cta-band-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,8vw,100px); color:var(--white); line-height:0.95; margin-bottom:24px; }
+.cta-band-sub { font-size:18px; color:var(--muted); max-width:600px; margin:0 auto 44px; font-weight:300; line-height:1.8; }
+.cta-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
+
+/* === TESTIMONIALS === */
+#testimonials { padding:120px 52px; background:var(--bg); }
+.testimonials-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:60px; }
+.testimonial-card { background:var(--card-bg); border:1px solid var(--border); padding:36px 32px; backdrop-filter:blur(10px); transition:all 0.3s; position:relative; }
+.testimonial-card:hover { border-color:rgba(0,180,255,0.3); transform:translateY(-4px); }
+.testimonial-quote { font-size:48px; color:var(--blue); line-height:1; margin-bottom:16px; font-family:serif; }
+.testimonial-text { font-size:15px; color:var(--text); line-height:1.75; font-weight:300; font-style:italic; margin-bottom:28px; }
+.testimonial-author { display:flex; align-items:center; gap:14px; }
+.testimonial-avatar { width:44px; height:44px; background:linear-gradient(135deg,var(--blue),var(--gold)); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Bebas Neue',sans-serif; font-size:18px; color:#fff; flex-shrink:0; }
+.testimonial-name { font-weight:700; color:var(--white); font-size:14px; }
+.testimonial-role { font-size:12px; color:var(--muted); margin-top:2px; }
+
+/* === TECH STACK === */
+#stack { padding:80px 52px; border-top:1px solid var(--border); border-bottom:1px solid var(--border); background:var(--bg2); }
+.stack-label { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--muted); letter-spacing:3px; text-align:center; margin-bottom:32px; text-transform:uppercase; }
+.stack-logos { display:flex; gap:0; flex-wrap:wrap; justify-content:center; }
+.stack-item { padding:20px 36px; border:1px solid var(--border); font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--muted); letter-spacing:2px; transition:all 0.3s; margin:-1px; }
+.stack-item:hover { color:var(--blue); border-color:rgba(0,180,255,0.3); background:rgba(0,180,255,0.05); z-index:1; position:relative; }
+
+@media (max-width:1024px) {
+  .services-grid { grid-template-columns:1fr 1fr; }
+  .ventures-grid { grid-template-columns:1fr 1fr; }
+  .testimonials-grid { grid-template-columns:1fr; }
+  .why-layout { grid-template-columns:1fr; }
+  .why-big-num { font-size:120px; }
+}
+@media (max-width:768px) {
+  .hero-main { padding:120px 20px 80px; }
+  .hero-layout { grid-template-columns:1fr; }
+  .hero-right { display:none; }
+  .services-grid, .ventures-grid { grid-template-columns:1fr; }
+  #services-home, #why, #ventures-home, #numbers, #cta-band, #testimonials, #stack { padding-left:20px; padding-right:20px; }
+}
+</style>
+</head>
+<body>
+
+<div id="nav-inject" data-root=""></div>
+
+<!-- TICKER -->
+<div style="padding-top:72px" id="top"></div>
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="blue">▶ TECHNOLOGY</span><span>ieLAN Edge</span><span class="gold">AMAL TO IMPACT</span><span>INDIA · GLOBAL</span><span class="blue">▶ INNOVATION</span><span>AI & DATA</span><span class="gold">CLOUD SOLUTIONS</span><span>DIGITAL TRANSFORMATION</span><span class="blue">▶ VENTURES</span><span>PURPOSE DRIVEN</span><span class="gold">CROSS-BORDER</span><span>EDGE MINDSET</span>
+    <span class="blue">▶ TECHNOLOGY</span><span>ieLAN Edge</span><span class="gold">AMAL TO IMPACT</span><span>INDIA · GLOBAL</span><span class="blue">▶ INNOVATION</span><span>AI & DATA</span><span class="gold">CLOUD SOLUTIONS</span><span>DIGITAL TRANSFORMATION</span><span class="blue">▶ VENTURES</span><span>PURPOSE DRIVEN</span><span class="gold">CROSS-BORDER</span><span>EDGE MINDSET</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="slash slash1"></div>
+  <div class="slash slash2"></div>
+  <div class="slash slash3"></div>
+
+  <div class="hero-main">
+    <div class="hero-layout">
+      <div class="hero-text">
+        <div class="hero-tag">Cross-Border Technology & Innovation</div>
+        <h1 class="hero-title">
+          <div>ieLAN</div>
+          <div class="line2">EDGE</div>
+          <div class="line3">IMPACT</div>
+        </h1>
+        <p class="hero-sub">From <strong>India to World</strong> and beyond — we build technology, ventures, and solutions that turn <strong>Amal (hope)</strong> into real-world impact at the frontier of what's possible.</p>
+        <div class="hero-cta">
+          <a href="pages/services.html" class="btn-primary">⚡ Our Services</a>
+          <a href="pages/about.html" class="btn-secondary">Learn More →</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-orbit">
+          <div class="hero-orbit-ring orbit-1"><div class="orbit-dot"></div></div>
+          <div class="hero-orbit-ring orbit-2"><div class="orbit-dot gold"></div></div>
+          <div class="hero-orbit-ring orbit-3"></div>
+          <div class="hero-center-box">
+            <div class="hero-center-logo">ie</div>
+            <div class="hero-center-tag">AMAL TO IMPACT</div>
+          </div>
+          <div class="hero-metrics left">
+            <div class="metric-chip">
+              <div class="val" data-count="5" data-suffix="+">5+</div>
+              <div class="lbl">Countries Reached</div>
+            </div>
+            <div class="metric-chip">
+              <div class="val gold" data-count="2">2</div>
+              <div class="lbl">HQ Locations</div>
+            </div>
+          </div>
+          <div class="hero-metrics right">
+            <div class="metric-chip">
+              <div class="val" data-count="10" data-suffix="+">10+</div>
+              <div class="lbl">Active Ventures</div>
+            </div>
+            <div class="metric-chip">
+              <div class="val gold" data-count="100" data-suffix="%">100%</div>
+              <div class="lbl">Purpose Driven</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stats bar -->
+  <div class="stats-row">
+    <div class="stat-block"><div class="stat-num" data-count="50" data-suffix="+">50+</div><div class="stat-label">Projects Delivered</div></div>
+    <div class="stat-block"><div class="stat-num gold" data-count="1" data-suffix=" HQ">1 HQ</div><div class="stat-label">India</div></div>
+    <div class="stat-block"><div class="stat-num" data-count="5" data-suffix="+">5+</div><div class="stat-label">Countries Reached</div></div>
+    <div class="stat-block"><div class="stat-num gold" data-count="10" data-suffix="+">10+</div><div class="stat-label">Active Ventures</div></div>
+    <div class="stat-block"><div class="stat-num" data-count="100" data-suffix="%">100%</div><div class="stat-label">Purpose Driven</div></div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services-home">
+  <div class="container">
+    <div class="section-label reveal">What We Do</div>
+    <h2 class="section-title reveal">OUR <span class="gold">CORE</span><br>SERVICES</h2>
+    <p class="section-sub reveal">End-to-end technology solutions designed for the modern enterprise, delivered with the agility of a startup and the depth of a global firm.</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <span class="service-num">01 / TECHNOLOGY</span>
+        <span class="service-icon">⚡</span>
+        <div class="service-title">Technology Solutions</div>
+        <p class="service-desc">Custom software, platforms, and systems built to solve your hardest problems. From architecture to deployment, we own the entire journey.</p>
+        <a href="pages/services.html#tech" class="service-link">Explore →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-num">02 / DIGITAL</span>
+        <span class="service-icon">🌐</span>
+        <div class="service-title">Digital Transformation</div>
+        <p class="service-desc">Modernise your operations, processes, and customer experience with a transformation roadmap built for your unique context.</p>
+        <a href="pages/services.html#digital" class="service-link">Explore →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-num">03 / AI & DATA</span>
+        <span class="service-icon">🤖</span>
+        <div class="service-title">AI & Data Intelligence</div>
+        <p class="service-desc">Harness machine learning, LLMs, and advanced analytics to make smarter decisions and automate at scale.</p>
+        <a href="pages/services.html#ai" class="service-link">Explore →</a>
+      </div>
+      <div class="service-card reveal">
+        <span class="service-num">04 / CLOUD</span>
+        <span class="service-icon">☁️</span>
+        <div class="service-title">Cloud & Infrastructure</div>
+        <p class="service-desc">Design, migrate, and optimise cloud environments across AWS, Azure, and GCP with a security-first approach.</p>
+        <a href="pages/services.html#cloud" class="service-link">Explore →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <span class="service-num">05 / CONSULTING</span>
+        <span class="service-icon">🧭</span>
+        <div class="service-title">Business Consulting</div>
+        <p class="service-desc">Strategic advisory, market entry, and cross-border growth — especially across the India-MENA corridor.</p>
+        <a href="pages/services.html#consulting" class="service-link">Explore →</a>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <span class="service-num">06 / VENTURES</span>
+        <span class="service-icon">🚀</span>
+        <div class="service-title">Venture Building</div>
+        <p class="service-desc">We don't just consult — we co-build. ieLAN Edge actively creates, invests in, and scales new ventures from concept to impact.</p>
+        <a href="pages/ventures.html" class="service-link">Explore →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="stats-row">
+    <div class="stat-block reveal"><div class="stat-num" data-count="50" data-suffix="+">50+</div><div class="stat-label">Projects Delivered</div></div>
+    <div class="stat-block reveal reveal-delay-1"><div class="stat-num gold" data-count="12" data-suffix="+">12+</div><div class="stat-label">Technology Partners</div></div>
+    <div class="stat-block reveal reveal-delay-2"><div class="stat-num" data-count="3">3</div><div class="stat-label">Active Industries</div></div>
+    <div class="stat-block reveal reveal-delay-3"><div class="stat-num gold" data-count="2021">2021</div><div class="stat-label">Founded</div></div>
+    <div class="stat-block reveal reveal-delay-4"><div class="stat-num" data-count="5" data-suffix="★">5★</div><div class="stat-label">Client Satisfaction</div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why">
+  <div class="why-bg"></div>
+  <div class="container" style="position:relative;z-index:2">
+    <div class="section-label reveal">The Difference</div>
+    <h2 class="section-title reveal">WHY <span class="gold">ieLAN</span><br>EDGE</h2>
+    <div class="why-layout">
+      <div class="why-big-num reveal-left">04</div>
+      <div class="why-grid">
+        <div class="why-card reveal">
+          <div class="why-num">01</div>
+          <div class="why-title">Cross-Border DNA</div>
+          <p class="why-desc">Built from the intersection of Boarders— we bring a truly global perspective rooted in two of the world's fastest-growing economies.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-1">
+          <div class="why-num">02</div>
+          <div class="why-title">Multi-Industry Vision</div>
+          <p class="why-desc">We're not locked into one sector. Our vision spans technology, business, education, and beyond — wherever impact lives.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-2">
+          <div class="why-num">03</div>
+          <div class="why-title">Purpose-Driven</div>
+          <p class="why-desc">Every project is driven by Amal — hope turned into real-world impact. We build for meaning, not just metrics.</p>
+        </div>
+        <div class="why-card reveal reveal-delay-3">
+          <div class="why-num">04</div>
+          <div class="why-title">Edge Mindset</div>
+          <p class="why-desc">We thrive at the frontier. Bold, fast, and always ahead of the curve — the Edge is not just our name, it's how we operate.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VENTURES PREVIEW -->
+<section id="ventures-home">
+  <div class="container">
+    <div class="section-label reveal">Our Ventures</div>
+    <h2 class="section-title reveal">BUILDING THE <span class="gold">FUTURE</span></h2>
+    <p class="section-sub reveal">We don't just advise — we build. Here are some of the ventures ieLAN Edge is actively creating and growing.</p>
+    <div class="ventures-grid">
+      <div class="venture-card reveal">
+        <div class="venture-emoji">🌐</div>
+        <div class="venture-stage stage-dev">In Development</div>
+        <div class="venture-name">EdgeConnect</div>
+        <p class="venture-desc">A B2B platform connecting Indian and MENA businesses for cross-border trade and partnerships.</p>
+      </div>
+      <div class="venture-card reveal reveal-delay-1">
+        <div class="venture-emoji">🤖</div>
+        <div class="venture-stage stage-dev">In Development</div>
+        <div class="venture-name">EdgeAI Labs</div>
+        <p class="venture-desc">Applied AI research and product studio building Arabic-English multilingual AI tools.</p>
+      </div>
+      <div class="venture-card reveal reveal-delay-2">
+        <div class="venture-emoji">📚</div>
+        <div class="venture-stage stage-concept">Concept Stage</div>
+        <div class="venture-name">AmalEd</div>
+        <p class="venture-desc">Education technology empowering youth across emerging markets with skills for the digital economy.</p>
+      </div>
+      <div class="venture-card reveal reveal-delay-3">
+        <div class="venture-emoji">⚡</div>
+        <div class="venture-stage stage-concept">Concept Stage</div>
+        <div class="venture-name">EdgeStack</div>
+        <p class="venture-desc">A developer platform and SaaS toolkit designed for rapid product launch across MENA and South Asia.</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="pages/ventures.html" class="btn-secondary reveal">View All Ventures →</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="container">
+    <div class="section-label reveal">Social Proof</div>
+    <h2 class="section-title reveal">WHAT <span class="gold">PARTNERS</span><br>SAY</h2>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">ieLAN Edge brought a rare combination of technical depth and strategic thinking. They understood our market in both India and the MENA region from day one.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">AK</div>
+          <div>
+            <div class="testimonial-name">Arjun Kapoor</div>
+            <div class="testimonial-role">CEO, TechBridge India</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-1">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Working with ieLAN Edge felt like having a partner, not a vendor. Their purpose-driven approach aligned perfectly with our mission.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">SM</div>
+          <div>
+            <div class="testimonial-name">Sara Mohammed</div>
+            <div class="testimonial-role">COO, NileTech Solutions</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card reveal reveal-delay-2">
+        <div class="testimonial-quote">"</div>
+        <p class="testimonial-text">Their AI solutions gave us capabilities we thought were years away. The team's cross-border experience made integration seamless.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">RH</div>
+          <div>
+            <div class="testimonial-name">Rania Hassan</div>
+            <div class="testimonial-role">Director of Innovation, MenaVentures</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK -->
+<section id="stack">
+  <div class="container">
+    <div class="stack-label">Technologies We Work With</div>
+    <div class="stack-logos">
+      <div class="stack-item">React</div><div class="stack-item">Node.js</div><div class="stack-item">Python</div>
+      <div class="stack-item">AWS</div><div class="stack-item">Azure</div><div class="stack-item">GCP</div>
+      <div class="stack-item">TensorFlow</div><div class="stack-item">OpenAI</div><div class="stack-item">PostgreSQL</div>
+      <div class="stack-item">MongoDB</div><div class="stack-item">Docker</div><div class="stack-item">Kubernetes</div>
+      <div class="stack-item">Next.js</div><div class="stack-item">Flutter</div><div class="stack-item">GraphQL</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<section id="cta-band">
+  <div class="cta-band-bg"></div>
+  <div class="container">
+    <div class="cta-band-inner">
+      <div class="section-label reveal" style="justify-content:center">Ready to Begin</div>
+      <h2 class="cta-band-title reveal">LET'S BUILD THE<br><span class="gold">FUTURE</span> TOGETHER</h2>
+      <p class="cta-band-sub reveal">Have an idea, a challenge, or a vision? ieLAN Edge is ready to be your partner at the frontier of what's possible.</p>
+      <div class="cta-btns reveal">
+        <a href="pages/contact.html" class="btn-primary">⚡ Get In Touch</a>
+        <a href="pages/careers.html" class="btn-gold">Join Our Team →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-inject" data-root=""></div>
+
+<script src="assets/js/layout.js"></script>
+<script src="assets/js/main.js"></script>
+</body>
+</html>

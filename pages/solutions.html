@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solutions — ieLAN Edge</title>
+<meta name="theme-color" content="#00b4ff">
+<link rel="manifest" href="../manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+#solutions-list { padding:80px 52px 120px; background:var(--bg); }
+.solutions-tabs { display:flex; gap:0; border-bottom:1px solid var(--border); margin-bottom:60px; margin-top:40px; }
+.tab-btn { background:none; border:none; border-bottom:2px solid transparent; color:var(--muted); padding:16px 28px; font-family:'Exo 2',sans-serif; font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; cursor:none; transition:all 0.3s; margin-bottom:-1px; }
+.tab-btn.active { color:var(--blue); border-bottom-color:var(--blue); }
+.tab-btn:hover { color:var(--text); }
+.tab-content { display:none; }
+.tab-content.active { display:block; animation:fadeIn 0.4s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
+.solution-layout { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+.solution-text p { font-size:15px; color:var(--muted); line-height:1.85; font-weight:300; margin-bottom:20px; }
+.solution-features { display:flex; flex-direction:column; gap:2px; margin-top:28px; }
+.sol-feature { display:flex; align-items:flex-start; gap:16px; background:var(--card-bg); border:1px solid var(--border); padding:16px 20px; transition:all 0.3s; backdrop-filter:blur(10px); }
+.sol-feature:hover { border-color:rgba(0,180,255,0.3); background:rgba(0,180,255,0.05); }
+.sol-check { color:var(--blue); font-size:14px; margin-top:2px; flex-shrink:0; }
+.sol-text { font-size:13px; color:var(--text); line-height:1.5; }
+.sol-text strong { color:var(--white); display:block; margin-bottom:2px; }
+.solution-cards { display:grid; grid-template-columns:1fr 1fr; gap:2px; }
+.sol-card { background:var(--card-bg); border:1px solid var(--border); padding:28px 24px; backdrop-filter:blur(10px); transition:all 0.3s; }
+.sol-card:hover { border-color:rgba(0,180,255,0.3); transform:translateY(-3px); }
+.sol-card-icon { font-size:32px; margin-bottom:14px; }
+.sol-card-title { font-weight:800; color:var(--white); font-size:15px; margin-bottom:8px; }
+.sol-card-desc { font-size:13px; color:var(--muted); line-height:1.6; font-weight:300; }
+.sol-big-heading { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,6vw,80px); color:var(--white); line-height:0.95; margin-bottom:20px; }
+.sol-big-heading span { color:var(--gold); }
+@media (max-width:1024px) { .solution-layout { grid-template-columns:1fr; } }
+@media (max-width:768px) { #solutions-list { padding-left:20px; padding-right:20px; } .solution-cards { grid-template-columns:1fr; } .solutions-tabs { overflow-x:auto; } }
+</style>
+</head>
+<body>
+<div id="nav-inject" data-root="../"></div>
+<div style="padding-top:72px"></div>
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="blue">▶ SOLUTIONS</span><span>ENTERPRISE</span><span class="gold">STARTUPS</span><span>GOVERNMENT</span><span class="blue">▶ SME</span><span>INDUSTRY SPECIFIC</span><span class="gold">CROSS-BORDER</span>
+    <span class="blue">▶ SOLUTIONS</span><span>ENTERPRISE</span><span class="gold">STARTUPS</span><span>GOVERNMENT</span><span class="blue">▶ SME</span><span>INDUSTRY SPECIFIC</span><span class="gold">CROSS-BORDER</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content container">
+    <div class="page-breadcrumb"><a href="../index.html">Home</a> › Solutions</div>
+    <h1 class="page-hero-title">INDUSTRY <span class="accent">SOLUTIONS</span></h1>
+    <p class="page-hero-desc">Tailored solutions for every organisation size and sector — from global enterprises to ambitious startups.</p>
+  </div>
+</div>
+
+<section id="solutions-list">
+  <div class="container">
+    <div class="section-label reveal">By Segment</div>
+    <h2 class="section-title reveal">FIND YOUR <span class="gold">SOLUTION</span></h2>
+    <div class="solutions-tabs">
+      <button class="tab-btn active" onclick="switchTab('enterprise',this)">Enterprise</button>
+      <button class="tab-btn" onclick="switchTab('startup',this)">Startups</button>
+      <button class="tab-btn" onclick="switchTab('government',this)">Government</button>
+      <button class="tab-btn" onclick="switchTab('sme',this)">SME</button>
+    </div>
+
+    <div id="tab-enterprise" class="tab-content active">
+      <div class="solution-layout">
+        <div class="solution-text">
+          <div class="section-label">For Enterprise</div>
+          <div class="sol-big-heading">ENTERPRISE <span>SOLUTIONS</span></div>
+          <p>Large-scale technology transformation for enterprises operating across markets. We understand the complexity, compliance requirements, and scale that enterprise clients demand.</p>
+          <p>Whether you're modernising a legacy system, launching a new digital product, or expanding into India or MENA, ieLAN Edge brings the expertise and depth to deliver at scale.</p>
+          <div class="solution-features">
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Legacy Modernisation</strong>Migrate from outdated systems to modern, cloud-native architectures without disruption.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Digital Workplace</strong>Transform how your employees work with intelligent platforms and automation.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Enterprise AI</strong>Deploy AI at scale across business functions — from supply chain to customer experience.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Market Expansion</strong>Enter India or MENA markets with confidence — strategy, tech, and local expertise.</div></div>
+          </div>
+          <div style="margin-top:32px"><a href="contact.html" class="btn-primary">Talk to Enterprise Team →</a></div>
+        </div>
+        <div class="solution-cards">
+          <div class="sol-card"><div class="sol-card-icon">🏛️</div><div class="sol-card-title">Global Scale</div><p class="sol-card-desc">Solutions architected for global scale, regional compliance, and 24/7 operations.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">🔐</div><div class="sol-card-title">Security First</div><p class="sol-card-desc">Enterprise-grade security, zero-trust architecture, and full compliance readiness.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">🔗</div><div class="sol-card-title">System Integration</div><p class="sol-card-desc">Connect complex enterprise ecosystems with clean, maintainable integrations.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">📊</div><div class="sol-card-title">Analytics & BI</div><p class="sol-card-desc">Unified data platforms and executive dashboards for data-driven leadership.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-startup" class="tab-content">
+      <div class="solution-layout">
+        <div class="solution-text">
+          <div class="section-label">For Startups</div>
+          <div class="sol-big-heading">STARTUP <span>SOLUTIONS</span></div>
+          <p>Move fast, build right. We're the technology partner startups need — from MVP to scale, with a hands-on team that understands the startup journey.</p>
+          <p>ieLAN Edge has worked with early-stage startups across India and the Gulf. We know how to build lean, how to pivot fast, and how to scale when traction arrives.</p>
+          <div class="solution-features">
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>MVP Development</strong>Get to market fast with a lean, functional MVP built to validate your core hypotheses.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Product Engineering</strong>Full product team — design, engineering, QA — on a flexible engagement model.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Growth Hacking</strong>Data-driven growth experiments across acquisition, activation, and retention.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Scale-Ready Architecture</strong>Build for now but architect for 10x — scalable from day one.</div></div>
+          </div>
+          <div style="margin-top:32px"><a href="contact.html" class="btn-primary">Start Building →</a></div>
+        </div>
+        <div class="solution-cards">
+          <div class="sol-card"><div class="sol-card-icon">🚀</div><div class="sol-card-title">Fast Launch</div><p class="sol-card-desc">From idea to live product in weeks, not months. Time-to-market is our edge.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">💰</div><div class="sol-card-title">Startup Pricing</div><p class="sol-card-desc">Flexible engagement models designed for early-stage budgets and cash constraints.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">🔄</div><div class="sol-card-title">Agile Delivery</div><p class="sol-card-desc">Weekly sprints, constant communication, and full transparency throughout.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">🌍</div><div class="sol-card-title">Market Access</div><p class="sol-card-desc">Tap our networks in India and MENA for early customers and distribution.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-government" class="tab-content">
+      <div class="solution-layout">
+        <div class="solution-text">
+          <div class="section-label">For Government</div>
+          <div class="sol-big-heading">GOVERNMENT <span>SOLUTIONS</span></div>
+          <p>Modernising public services, improving citizen experiences, and building the digital infrastructure of tomorrow — responsibly and securely.</p>
+          <p>ieLAN Edge brings deep expertise in government digital transformation across India with a track record of delivering citizen-centric digital services at scale.</p>
+          <div class="solution-features">
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>E-Government Platforms</strong>Citizen portals, digital ID systems, and online government services.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Open Data & Analytics</strong>Transparent data platforms that drive evidence-based policy and public accountability.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Smart City Solutions</strong>IoT, AI, and data platforms for smarter urban management and public infrastructure.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Secure Digital Infrastructure</strong>Government-grade security, sovereignty-compliant cloud, and resilient systems.</div></div>
+          </div>
+          <div style="margin-top:32px"><a href="contact.html" class="btn-primary">Engage With Us →</a></div>
+        </div>
+        <div class="solution-cards">
+          <div class="sol-card"><div class="sol-card-icon">🏛️</div><div class="sol-card-title">Compliance Ready</div><p class="sol-card-desc">Built for the compliance, audit, and governance requirements of public sector clients.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">🔐</div><div class="sol-card-title">Sovereign Cloud</div><p class="sol-card-desc">Data sovereignty and in-country hosting options for sensitive government workloads.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">👥</div><div class="sol-card-title">Citizen Experience</div><p class="sol-card-desc">Human-centred design for services that millions of citizens actually use and trust.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">📈</div><div class="sol-card-title">Impact Measurement</div><p class="sol-card-desc">Dashboards and analytics that measure real social and economic outcomes.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="tab-sme" class="tab-content">
+      <div class="solution-layout">
+        <div class="solution-text">
+          <div class="section-label">For SMEs</div>
+          <div class="sol-big-heading">SME <span>SOLUTIONS</span></div>
+          <p>Small and medium enterprises deserve enterprise-grade technology — at a price and pace that works for them. ieLAN Edge makes this possible.</p>
+          <p>We've helped SMEs across India leap-frog their competition by digitising operations, automating processes, and launching new digital revenue streams.</p>
+          <div class="solution-features">
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Digital Operations</strong>Digitise your core operations — from inventory to invoicing — in weeks.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>E-Commerce & Digital Sales</strong>Launch or grow your online presence and digital sales channels.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>CRM & Customer Platform</strong>Know your customers better and serve them faster with the right tools.</div></div>
+            <div class="sol-feature"><span class="sol-check">◈</span><div class="sol-text"><strong>Business Intelligence</strong>Simple, powerful dashboards that give SME owners the data they need to lead.</div></div>
+          </div>
+          <div style="margin-top:32px"><a href="contact.html" class="btn-primary">Get Started →</a></div>
+        </div>
+        <div class="solution-cards">
+          <div class="sol-card"><div class="sol-card-icon">💡</div><div class="sol-card-title">Affordable</div><p class="sol-card-desc">Flexible pricing designed to fit SME budgets without compromising on quality.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">⚡</div><div class="sol-card-title">Quick Wins</div><p class="sol-card-desc">Focus on the 20% of changes that deliver 80% of the business impact, fast.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">🤝</div><div class="sol-card-title">Long-Term Partner</div><p class="sol-card-desc">We grow with you — not just a one-off project, but an ongoing technology partner.</p></div>
+          <div class="sol-card"><div class="sol-card-icon">🌍</div><div class="sol-card-title">Export Ready</div><p class="sol-card-desc">Help SMEs reach new markets in India, MENA, and globally through our network.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-inject" data-root="../"></div>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+<script>
+function switchTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>

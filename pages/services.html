@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — ieLAN Edge</title>
+<meta name="description" content="ieLAN Edge services: Technology Solutions, Digital Transformation, AI & Data, Cloud, and Business Consulting.">
+<meta name="theme-color" content="#00b4ff">
+<link rel="manifest" href="../manifest.json">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Exo+2:wght@300;400;600;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/global.css">
+<style>
+.service-section { padding:120px 52px; position:relative; }
+.service-section:nth-child(even) { background:var(--bg2); }
+.service-section:nth-child(odd) { background:var(--bg); }
+.service-inner { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.service-inner.reverse { }
+.service-content {}
+.service-big-icon { font-size:72px; margin-bottom:28px; display:block; }
+.service-tag { font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--blue); letter-spacing:3px; text-transform:uppercase; margin-bottom:16px; display:block; }
+.service-heading { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,6vw,80px); color:var(--white); line-height:0.95; margin-bottom:20px; }
+.service-heading span { color:var(--gold); }
+.service-body { font-size:15px; color:var(--muted); line-height:1.85; font-weight:300; margin-bottom:32px; }
+.service-features { display:flex; flex-direction:column; gap:2px; }
+.feature-item { display:flex; align-items:flex-start; gap:16px; background:var(--card-bg); border:1px solid var(--border); padding:16px 20px; transition:all 0.3s; backdrop-filter:blur(10px); }
+.feature-item:hover { border-color:rgba(0,180,255,0.3); background:rgba(0,180,255,0.05); }
+.feature-check { color:var(--blue); font-size:16px; margin-top:1px; flex-shrink:0; }
+.feature-text { font-size:13px; color:var(--text); line-height:1.5; }
+.feature-text strong { color:var(--white); display:block; margin-bottom:2px; font-size:14px; }
+
+.service-visual { position:relative; }
+.service-viz-box { background:var(--card-bg); border:1px solid var(--border); backdrop-filter:blur(20px); padding:36px; position:relative; overflow:hidden; min-height:400px; display:flex; flex-direction:column; justify-content:space-between; }
+.service-viz-box::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--blue),var(--gold)); }
+.viz-title { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--blue); letter-spacing:3px; text-transform:uppercase; margin-bottom:24px; }
+.viz-bars { display:flex; align-items:flex-end; gap:8px; height:160px; }
+.viz-bar { flex:1; background:linear-gradient(to top,var(--blue),rgba(0,180,255,0.3)); border-radius:2px 2px 0 0; position:relative; }
+.viz-bar-label { position:absolute; bottom:-20px; left:50%; transform:translateX(-50%); font-size:8px; color:var(--muted); letter-spacing:1px; white-space:nowrap; font-family:'JetBrains Mono',monospace; }
+.viz-metrics { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:36px; }
+.viz-metric { background:var(--surface); border:1px solid var(--border); padding:14px; }
+.viz-metric .v { font-family:'Bebas Neue',sans-serif; font-size:28px; color:var(--blue); line-height:1; }
+.viz-metric .v.g { color:var(--gold); }
+.viz-metric .l { font-size:10px; color:var(--muted); letter-spacing:1px; margin-top:2px; }
+.terminal { background:#000; border:1px solid var(--border); padding:24px; font-family:'JetBrains Mono',monospace; font-size:13px; min-height:280px; }
+.terminal-header { display:flex; gap:8px; margin-bottom:20px; }
+.t-dot { width:12px; height:12px; border-radius:50%; }
+.t-dot:nth-child(1){background:#ff5f56} .t-dot:nth-child(2){background:#ffbd2e} .t-dot:nth-child(3){background:#27c93f}
+.t-line { color:#00e5a0; margin-bottom:6px; }
+.t-line.cmd { color:#fff; }
+.t-line.comm { color:#4a6a8a; }
+.t-cursor { display:inline-block; width:8px; height:14px; background:var(--blue); animation:blink 1s step-end infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+.ai-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; margin-top:60px; }
+.ai-card { background:var(--card-bg); border:1px solid var(--border); padding:32px 28px; backdrop-filter:blur(10px); transition:all 0.4s; }
+.ai-card:hover { border-color:rgba(0,180,255,0.3); transform:translateY(-4px); }
+.ai-card-icon { font-size:36px; margin-bottom:16px; }
+.ai-card-title { font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--white); margin-bottom:10px; }
+.ai-card-desc { font-size:13px; color:var(--muted); line-height:1.7; font-weight:300; }
+
+.process-steps { display:grid; grid-template-columns:repeat(5,1fr); gap:0; margin-top:60px; position:relative; }
+.process-steps::before { content:''; position:absolute; top:32px; left:10%; right:10%; height:1px; background:linear-gradient(90deg,var(--blue),var(--gold)); z-index:0; }
+.process-step { text-align:center; padding:0 16px; position:relative; z-index:1; }
+.process-num { width:64px; height:64px; background:var(--card-bg); border:1px solid var(--blue); border-radius:50%; display:flex; align-items:center; justify-content:center; font-family:'Bebas Neue',sans-serif; font-size:24px; color:var(--blue); margin:0 auto 16px; box-shadow:0 0 20px rgba(0,180,255,0.2); }
+.process-title { font-weight:700; color:var(--white); font-size:13px; margin-bottom:8px; }
+.process-desc { font-size:11px; color:var(--muted); line-height:1.6; }
+
+@media (max-width:1024px) { .service-inner { grid-template-columns:1fr; } .ai-grid { grid-template-columns:1fr 1fr; } .process-steps { grid-template-columns:1fr 1fr; } .process-steps::before { display:none; } }
+@media (max-width:768px) { .service-section { padding-left:20px; padding-right:20px; } .ai-grid { grid-template-columns:1fr; } .process-steps { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+<div id="nav-inject" data-root="../"></div>
+<div style="padding-top:72px"></div>
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    <span class="blue">▶ SERVICES</span><span>TECHNOLOGY</span><span class="gold">DIGITAL TRANSFORM</span><span>AI & DATA</span><span class="blue">▶ CLOUD</span><span>CONSULTING</span><span class="gold">VENTURES</span><span>END-TO-END DELIVERY</span>
+    <span class="blue">▶ SERVICES</span><span>TECHNOLOGY</span><span class="gold">DIGITAL TRANSFORM</span><span>AI & DATA</span><span class="blue">▶ CLOUD</span><span>CONSULTING</span><span class="gold">VENTURES</span><span>END-TO-END DELIVERY</span>
+  </div>
+</div>
+
+<div class="page-hero">
+  <div class="page-hero-bg"></div>
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-content container">
+    <div class="page-breadcrumb"><a href="../index.html">Home</a> › Services</div>
+    <h1 class="page-hero-title">OUR <span class="accent">SERVICES</span></h1>
+    <p class="page-hero-desc">Comprehensive technology and business solutions, delivered with global expertise and local insight.</p>
+  </div>
+</div>
+
+<!-- Process -->
+<section style="padding:80px 52px;background:var(--bg2);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-label reveal" style="justify-content:center">How We Work</div>
+    <h2 class="section-title reveal" style="text-align:center">OUR <span class="gold">PROCESS</span></h2>
+    <div class="process-steps">
+      <div class="process-step reveal"><div class="process-num">01</div><div class="process-title">Discovery</div><p class="process-desc">Deep-dive into your context, challenges, and goals.</p></div>
+      <div class="process-step reveal reveal-delay-1"><div class="process-num">02</div><div class="process-title">Strategy</div><p class="process-desc">Craft a tailored roadmap aligned to outcomes.</p></div>
+      <div class="process-step reveal reveal-delay-2"><div class="process-num">03</div><div class="process-title">Build</div><p class="process-desc">Agile delivery with continuous communication.</p></div>
+      <div class="process-step reveal reveal-delay-3"><div class="process-num">04</div><div class="process-title">Launch</div><p class="process-desc">Deploy, test, and go live with full support.</p></div>
+      <div class="process-step reveal reveal-delay-4"><div class="process-num">05</div><div class="process-title">Scale</div><p class="process-desc">Optimise, grow, and evolve continuously.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Tech Solutions -->
+<section class="service-section" id="tech">
+  <div class="container">
+    <div class="service-inner">
+      <div class="service-content">
+        <span class="service-tag">01 / Technology Solutions</span>
+        <div class="service-big-icon">⚡</div>
+        <h2 class="service-heading">TECH <span>SOLUTIONS</span></h2>
+        <p class="service-body">From custom software platforms to enterprise-grade systems, we design, architect, and deliver technology that solves real problems and scales with your ambitions.</p>
+        <div class="service-features">
+          <div class="feature-item reveal"><span class="feature-check">◈</span><div class="feature-text"><strong>Custom Software Development</strong>Web apps, mobile apps, and enterprise platforms built to your exact requirements.</div></div>
+          <div class="feature-item reveal reveal-delay-1"><span class="feature-check">◈</span><div class="feature-text"><strong>API Design & Integration</strong>Robust RESTful and GraphQL APIs that connect your ecosystem.</div></div>
+          <div class="feature-item reveal reveal-delay-2"><span class="feature-check">◈</span><div class="feature-text"><strong>System Architecture</strong>Scalable, resilient architecture designed for the future.</div></div>
+          <div class="feature-item reveal reveal-delay-3"><span class="feature-check">◈</span><div class="feature-text"><strong>DevOps & CI/CD</strong>Automated pipelines, testing, and deployment for rapid, reliable delivery.</div></div>
+        </div>
+        <div style="margin-top:32px"><a href="contact.html" class="btn-primary">Start a Project →</a></div>
+      </div>
+      <div class="service-visual reveal-right">
+        <div class="service-viz-box">
+          <div class="viz-title">// Project Dashboard</div>
+          <div class="terminal">
+            <div class="terminal-header"><div class="t-dot"></div><div class="t-dot"></div><div class="t-dot"></div></div>
+            <div class="t-line comm">$ ieLAN-edge init project</div>
+            <div class="t-line">✓ Environment configured</div>
+            <div class="t-line">✓ Dependencies resolved (342 packages)</div>
+            <div class="t-line">✓ CI/CD pipeline active</div>
+            <div class="t-line cmd">$ npm run deploy --env=prod</div>
+            <div class="t-line">🚀 Build complete in 2.4s</div>
+            <div class="t-line" style="color:var(--gold)">✓ Deployed to edge network</div>
+            <div class="t-line">📊 Health check: ALL SYSTEMS GO</div>
+            <div class="t-line">▶ <span class="t-cursor"></span></div>
+          </div>
+          <div class="viz-metrics">
+            <div class="viz-metric"><div class="v">99.9%</div><div class="l">Uptime SLA</div></div>
+            <div class="viz-metric"><div class="v g">2.4s</div><div class="l">Avg Deploy Time</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Digital Transformation -->
+<section class="service-section" id="digital">
+  <div class="container">
+    <div class="service-inner">
+      <div class="service-visual reveal-left">
+        <div class="service-viz-box">
+          <div class="viz-title">// Transformation Index</div>
+          <div class="viz-bars">
+            <div class="viz-bar" style="height:40%"><div class="viz-bar-label">Before</div></div>
+            <div class="viz-bar" style="height:45%;background:linear-gradient(to top,var(--gold),rgba(245,200,66,0.3))"><div class="viz-bar-label">Month 1</div></div>
+            <div class="viz-bar" style="height:60%"><div class="viz-bar-label">Month 3</div></div>
+            <div class="viz-bar" style="height:75%;background:linear-gradient(to top,var(--gold),rgba(245,200,66,0.3))"><div class="viz-bar-label">Month 6</div></div>
+            <div class="viz-bar" style="height:95%"><div class="viz-bar-label">Month 12</div></div>
+          </div>
+          <div class="viz-metrics">
+            <div class="viz-metric"><div class="v">+240%</div><div class="l">Efficiency Gain</div></div>
+            <div class="viz-metric"><div class="v g">-60%</div><div class="l">Manual Processes</div></div>
+            <div class="viz-metric"><div class="v">4.8★</div><div class="l">User Satisfaction</div></div>
+            <div class="viz-metric"><div class="v g">3x</div><div class="l">ROI Delivered</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="service-content">
+        <span class="service-tag">02 / Digital Transformation</span>
+        <div class="service-big-icon">🌐</div>
+        <h2 class="service-heading">DIGITAL <span>TRANSFORM</span></h2>
+        <p class="service-body">We guide organisations through the full spectrum of digital change — from strategy through culture, process, and technology — delivering measurable results.</p>
+        <div class="service-features">
+          <div class="feature-item reveal"><span class="feature-check">◈</span><div class="feature-text"><strong>Digital Strategy & Roadmap</strong>A clear, executable plan tailored to your industry and maturity level.</div></div>
+          <div class="feature-item reveal reveal-delay-1"><span class="feature-check">◈</span><div class="feature-text"><strong>Process Automation</strong>Eliminate bottlenecks with intelligent automation and workflow redesign.</div></div>
+          <div class="feature-item reveal reveal-delay-2"><span class="feature-check">◈</span><div class="feature-text"><strong>Change Management</strong>Ensuring your people and culture evolve alongside your technology.</div></div>
+          <div class="feature-item reveal reveal-delay-3"><span class="feature-check">◈</span><div class="feature-text"><strong>Customer Experience Modernisation</strong>Re-engineer every touchpoint for the digital-first customer.</div></div>
+        </div>
+        <div style="margin-top:32px"><a href="contact.html" class="btn-primary">Transform Now →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI & Data -->
+<section class="service-section" id="ai">
+  <div class="container">
+    <div class="section-label reveal">03 / AI & Data</div>
+    <h2 class="section-title reveal">AI & DATA <span class="gold">INTELLIGENCE</span></h2>
+    <p class="section-sub reveal">We build AI-powered products and data pipelines that give organisations genuine intelligence — not just dashboards.</p>
+    <div class="ai-grid">
+      <div class="ai-card reveal">
+        <div class="ai-card-icon">🤖</div>
+        <div class="ai-card-title">Machine Learning</div>
+        <p class="ai-card-desc">Custom ML models trained on your data — predictive analytics, recommendation engines, demand forecasting, and more.</p>
+      </div>
+      <div class="ai-card reveal reveal-delay-1">
+        <div class="ai-card-icon">🗣️</div>
+        <div class="ai-card-title">LLM & GenAI</div>
+        <p class="ai-card-desc">Build intelligent applications with large language models — chatbots, document intelligence, code generation, and multilingual AI (Arabic/English).</p>
+      </div>
+      <div class="ai-card reveal reveal-delay-2">
+        <div class="ai-card-icon">📊</div>
+        <div class="ai-card-title">Data Engineering</div>
+        <p class="ai-card-desc">Modern data pipelines, warehouses, and lakehouses that turn raw data into reliable, queryable intelligence.</p>
+      </div>
+      <div class="ai-card reveal">
+        <div class="ai-card-icon">👁️</div>
+        <div class="ai-card-title">Computer Vision</div>
+        <p class="ai-card-desc">Image recognition, object detection, and visual inspection systems for manufacturing, security, and retail.</p>
+      </div>
+      <div class="ai-card reveal reveal-delay-1">
+        <div class="ai-card-icon">⚙️</div>
+        <div class="ai-card-title">MLOps</div>
+        <p class="ai-card-desc">Production ML infrastructure — model deployment, monitoring, versioning, and continuous retraining pipelines.</p>
+      </div>
+      <div class="ai-card reveal reveal-delay-2">
+        <div class="ai-card-icon">📈</div>
+        <div class="ai-card-title">Business Intelligence</div>
+        <p class="ai-card-desc">Executive dashboards, KPI tracking, and self-service analytics that make data accessible across your organisation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Cloud -->
+<section class="service-section" id="cloud">
+  <div class="container">
+    <div class="service-inner">
+      <div class="service-content">
+        <span class="service-tag">04 / Cloud & Infrastructure</span>
+        <div class="service-big-icon">☁️</div>
+        <h2 class="service-heading">CLOUD <span>INFRA</span></h2>
+        <p class="service-body">Design, migrate, and optimise cloud environments built for scale, security, and cost efficiency — across AWS, Azure, and Google Cloud.</p>
+        <div class="service-features">
+          <div class="feature-item reveal"><span class="feature-check">◈</span><div class="feature-text"><strong>Cloud Migration</strong>Lift-and-shift or re-architecture — we make cloud migration risk-free.</div></div>
+          <div class="feature-item reveal reveal-delay-1"><span class="feature-check">◈</span><div class="feature-text"><strong>Multi-Cloud Strategy</strong>Avoid lock-in with smart multi-cloud architectures.</div></div>
+          <div class="feature-item reveal reveal-delay-2"><span class="feature-check">◈</span><div class="feature-text"><strong>Security & Compliance</strong>Zero-trust security, SOC2, GDPR, and regional compliance built in.</div></div>
+          <div class="feature-item reveal reveal-delay-3"><span class="feature-check">◈</span><div class="feature-text"><strong>Cost Optimisation</strong>Continuous FinOps practices that reduce cloud spend by up to 40%.</div></div>
+        </div>
+        <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
+          <span class="badge">AWS</span><span class="badge">Azure</span><span class="badge">GCP</span><span class="badge">Kubernetes</span><span class="badge">Terraform</span>
+        </div>
+        <div style="margin-top:28px"><a href="contact.html" class="btn-primary">Explore Cloud →</a></div>
+      </div>
+      <div class="service-visual reveal-right">
+        <div class="service-viz-box">
+          <div class="viz-title">// Infrastructure Map</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:20px">
+            <div style="background:var(--surface);border:1px solid var(--border);padding:16px;text-align:center">
+              <div style="font-size:24px;margin-bottom:6px">🇮🇳</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:1px">INDIA REGION</div>
+              <div style="font-size:11px;color:var(--green);margin-top:4px">● Live</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--gold);padding:16px;text-align:center">
+              <div style="font-size:24px;margin-bottom:6px">☁️</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:1px">CORE CLUSTER</div>
+              <div style="font-size:11px;color:var(--green);margin-top:4px">● Primary</div>
+            </div>
+            <div style="background:var(--surface);border:1px solid var(--border);padding:16px;text-align:center">
+              <div style="font-size:24px;margin-bottom:6px">🇪🇬</div>
+              <div style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--blue);letter-spacing:1px">MENA REGION</div>
+              <div style="font-size:11px;color:var(--green);margin-top:4px">● Live</div>
+            </div>
+          </div>
+          <div class="viz-metrics">
+            <div class="viz-metric"><div class="v">99.99%</div><div class="l">Availability</div></div>
+            <div class="viz-metric"><div class="v g">-40%</div><div class="l">Cost Reduction</div></div>
+            <div class="viz-metric"><div class="v">&lt;50ms</div><div class="l">Latency</div></div>
+            <div class="viz-metric"><div class="v g">256-bit</div><div class="l">Encryption</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Consulting -->
+<section class="service-section" id="consulting">
+  <div class="container">
+    <div class="service-inner">
+      <div class="service-visual reveal-left">
+        <div class="service-viz-box">
+          <div class="viz-title">// Growth Compass</div>
+          <div style="text-align:center;padding:40px 0">
+            <div style="width:200px;height:200px;border-radius:50%;border:2px solid var(--blue);margin:0 auto;position:relative;display:flex;align-items:center;justify-content:center;">
+              <div style="width:160px;height:160px;border-radius:50%;border:1px dashed var(--border);position:absolute;display:flex;align-items:center;justify-content:center;">
+                <div style="text-align:center"><div style="font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold)">360°</div><div style="font-size:10px;color:var(--muted);letter-spacing:2px">ADVISORY</div></div>
+              </div>
+              <div style="position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 8px;font-size:10px;color:var(--blue);font-family:'JetBrains Mono',monospace;letter-spacing:1px">STRATEGY</div>
+              <div style="position:absolute;bottom:-12px;left:50%;transform:translateX(-50%);background:var(--bg);padding:0 8px;font-size:10px;color:var(--gold);font-family:'JetBrains Mono',monospace;letter-spacing:1px">MARKETS</div>
+              <div style="position:absolute;left:-16px;top:50%;transform:translateY(-50%);background:var(--bg);padding:4px 6px;font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:1px;writing-mode:vertical-lr">INDIA</div>
+              <div style="position:absolute;right:-16px;top:50%;transform:translateY(-50%);background:var(--bg);padding:4px 6px;font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;letter-spacing:1px;writing-mode:vertical-lr">MENA</div>
+            </div>
+          </div>
+          <div class="viz-metrics">
+            <div class="viz-metric"><div class="v">15+</div><div class="l">Markets Covered</div></div>
+            <div class="viz-metric"><div class="v g">2</div><div class="l">HQ Regions</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="service-content">
+        <span class="service-tag">05 / Business Consulting</span>
+        <div class="service-big-icon">🧭</div>
+        <h2 class="service-heading">BUSINESS <span>CONSULT</span></h2>
+        <p class="service-body">Strategic advisory rooted in cross-border expertise. We help businesses navigate market entry, growth, and transformation across India, MENA, and beyond.</p>
+        <div class="service-features">
+          <div class="feature-item reveal"><span class="feature-check">◈</span><div class="feature-text"><strong>Market Entry Strategy</strong>India and MENA market entry — regulatory, cultural, and competitive intelligence.</div></div>
+          <div class="feature-item reveal reveal-delay-1"><span class="feature-check">◈</span><div class="feature-text"><strong>Growth Strategy</strong>Identify, prioritise, and execute growth opportunities with clarity.</div></div>
+          <div class="feature-item reveal reveal-delay-2"><span class="feature-check">◈</span><div class="feature-text"><strong>Partnership & Ecosystem</strong>Build strategic alliances, distribution partnerships, and JVs.</div></div>
+          <div class="feature-item reveal reveal-delay-3"><span class="feature-check">◈</span><div class="feature-text"><strong>Organisational Design</strong>Structure, talent, and operating models for scale.</div></div>
+        </div>
+        <div style="margin-top:32px"><a href="contact.html" class="btn-primary">Book a Consultation →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div id="footer-inject" data-root="../"></div>
+<script src="../assets/js/layout.js"></script>
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

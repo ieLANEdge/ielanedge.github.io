@@ -1,0 +1,16 @@
+{
+  "name": "ieLAN Edge — Amal to Impact",
+  "short_name": "ieLAN Edge",
+  "description": "A cross-border technology and innovation company bridging India to the world.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#030810",
+  "theme_color": "#00b4ff",
+  "orientation": "portrait-primary",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ],
+  "categories": ["business", "productivity", "technology"],
+  "lang": "en"
+}
