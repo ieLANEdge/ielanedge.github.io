@@ -1,0 +1,18 @@
+User-agent: *
+Allow: /
+
+# Important pages
+Allow: /index.html
+Allow: /pages/about.html
+Allow: /pages/services.html
+Allow: /pages/solutions.html
+Allow: /pages/ventures.html
+Allow: /pages/newsroom.html
+Allow: /pages/careers.html
+Allow: /pages/contact.html
+
+# Block assets from being indexed (optional - keeps crawl budget on content)
+Disallow: /assets/
+
+# Sitemap location - critical for Google indexing
+Sitemap: https://ielanedge.github.io/sitemap.xml
