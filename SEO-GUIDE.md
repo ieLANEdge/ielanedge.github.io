@@ -27,14 +27,14 @@ Upload all updated files to your `ielanedge` GitHub repo:
 
 1. Go to → **https://search.google.com/search-console**
 2. Click **"Add Property"**
-3. Enter: `https://ielanedge.github.io/`
+3. Enter: `http://ielanedge.work.gd/`
 4. Choose **"URL prefix"** method
 5. Verify ownership using the **HTML tag** method:
    - Copy the `<meta name="google-site-verification" content="XXXXX">` tag Google gives you
    - Add it inside `<head>` of your `index.html`
    - Push to GitHub, then click **Verify** in Search Console
 6. After verified → go to **Sitemaps** → Submit: `https://ielanedge.github.io/sitemap.xml`
-7. Then go to **URL Inspection** → paste `https://ielanedge.github.io/` → click **"Request Indexing"**
+7. Then go to **URL Inspection** → paste `http://ielanedge.work.gd/` → click **"Request Indexing"**
 
 ---
 
